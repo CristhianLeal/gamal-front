@@ -1,0 +1,10 @@
+:root{
+
+  --color-black : #222; 
+  --color-white : #ddd;
+  --color-text : rgb(167,167,167);
+}
+
+body {
+  font-family: 'Teko', sans-serif;
+}
