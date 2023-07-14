@@ -1,0 +1,23 @@
+.imgDetail{
+  width: 90%;
+}
+.videoDetail{
+  width: 90%;
+  height: 600px;
+}
+
+@media (max-width: 991px) {
+  .videoDetail{
+    height: 500px;
+  }
+}
+@media (max-width: 768px) {
+  .videoDetail{
+    height: 300px;
+  }
+}
+@media (max-width: 600px) {
+  .videoDetail{
+    height: 200px;
+  }
+}

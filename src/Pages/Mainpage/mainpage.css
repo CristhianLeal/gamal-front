@@ -1,4 +1,38 @@
-*{
-  background-color: black;
-  color: white;
+.portada{
+  width: 100% !important;
+  height: 500px !important;
+  background-image: url('../../assets/Portada.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+
+.imgPortada{
+  width: 100%;
+}
+
+.h1Portada{
+  color: #ffffff;
+  font-size: 100px;
+}
+.h2Portada{
+  color: #ffffff;
+  font-size: 50px;
+}
+
+@media (max-width: 800px) {
+  .h1Portada{
+    font-size: 80px;
+  }
+  .h2Portada{
+    font-size: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .h1Portada{
+    font-size: 50px;
+  }
+  .h2Portada{
+    font-size: 25px;
+  }
 }

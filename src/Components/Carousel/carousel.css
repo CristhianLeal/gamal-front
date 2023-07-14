@@ -1,0 +1,22 @@
+
+.carousel-image {
+  width: 80%;
+  height: auto;
+  margin-right: 10px !important; 
+}
+
+.carousel-image:last-child {
+  margin-right: 0 !important;
+}
+
+.carousel-container {
+  width: 80% !important;
+  height: auto !important;
+}
+
+@media (min-width: 768px) {
+  .carousel-container {
+    max-width: 800px;
+    max-height: 400px;
+  }
+}
