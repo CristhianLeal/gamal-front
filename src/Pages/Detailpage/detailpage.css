@@ -5,6 +5,9 @@
   width: 90%;
   height: 600px;
 }
+.titleDetail{
+  font-size: 70px;
+}
 
 @media (max-width: 991px) {
   .videoDetail{
@@ -14,6 +17,9 @@
 @media (max-width: 768px) {
   .videoDetail{
     height: 300px;
+  }
+  .titleDetail{
+    font-size: 40px;
   }
 }
 @media (max-width: 600px) {

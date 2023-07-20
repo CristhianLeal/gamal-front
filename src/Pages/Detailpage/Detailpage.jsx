@@ -10,7 +10,7 @@ const DetailPage = () => {
 
   return (
     <div>
-      <h3 className='text-white text-center'>Título</h3>
+      <h3 className='text-white text-center titleDetail'>Título</h3>
       <p className='text-white text-center'>Descripción</p>
       <div className='d-flex flex-column align-items-center justify-content-center gap-5'>
         <img src={imgcard} className="imgDetail border-0" alt="Imagen" />

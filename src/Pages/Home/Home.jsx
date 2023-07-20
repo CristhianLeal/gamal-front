@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <div className="home-container">
       <div>
-        <Link to="/mainpage" className="d-flex align-items-center justify-content-center mt-5">
+        <Link to="/mainpage" className="d-flex align-items-center justify-content-center ">
           <img src={GamalDigitalColor} alt="GamalDigitalColor"  className='imagenHome'/>
         </Link>
       </div>

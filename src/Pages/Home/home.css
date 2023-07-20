@@ -1,10 +1,13 @@
-body {
+/* body {
   background-color: black;
-}
+} */
+
 .imagenHome{
-  width: 35%;
+  margin-top: 50px;
+  width: 38%;
   height: auto;
 }
+
 .textHome{
   color: var(--color-text);
 }
@@ -17,19 +20,28 @@ body {
   width: 200px;
   height: 40px;
   font-size: 22px;
+  transition: font-size 0.3s ease-in-out;
 }
 
 .buttonHome:hover{
   color: white;
   background-color:rgb(107,156,2);
+  font-size: 26px;
 }
 
 @media (max-width: 768px) {
   .imagenHome{
-    width: 50%;
+    width: 60%;
+    height: auto;
+  }
+}
+@media (max-width: 500px) {
+  .imagenHome{
+    margin-top: 80px;
+    width: 90%;
     height: auto;
   }
   .titleMedia{
-    margin-top: 100px !important;
+    margin-top: 80px !important;
   }
 }

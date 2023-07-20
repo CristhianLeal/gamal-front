@@ -25,7 +25,7 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <p className='mt-5 mb-0 d-flex justify-content-center textFoot text-center'>© Copyright 2023 GAMAL DIGITAL, todos los derechos reservados. Prohibido su uso sin autorización.</p>
+      <p className='textFoot text-center'>© Copyright 2023 GAMAL DIGITAL, todos los derechos reservados. Prohibido su uso sin autorización.</p>
     </div>
   );
 };

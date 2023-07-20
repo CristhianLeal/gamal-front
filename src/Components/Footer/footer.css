@@ -1,5 +1,7 @@
 .textFoot{
   color: rgb(113,113,113);
+  margin-top: 40px;
+  margin-bottom: 0px;
 }
 
 .circle-icon {
@@ -12,6 +14,7 @@
   background-color:rgb(24,24,24);
   color: rgb(107,156,2);
   font-size: 25px;
+  transition: font-size 0.3s ease-in-out;
 }
 .circle-icon:hover {
   background-color:rgb(226, 226, 226);
@@ -20,11 +23,15 @@
 }
 
 .Foot{
-  margin-top: 70px;
+  margin-top: 60px;
 }
 
 @media (max-width: 768px) {
   .Foot{
     margin-top: 60px;
   }
+  .textFoot{
+    font-size: 10px;
+  }
 }
+
