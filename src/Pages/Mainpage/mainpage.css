@@ -1,3 +1,6 @@
+body{
+  background-color: black;
+}
 .portada{
   width: 100% !important;
   height: 500px !important;

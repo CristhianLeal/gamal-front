@@ -10,6 +10,10 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
+  const closeNavbar = () => {
+    setIsOpen(false);
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top text-white navTotal">
       <div className="container d-flex justify-content-between align-items-center">
@@ -23,13 +27,13 @@ const Navbar = () => {
           id="navbarNav">
           <ul className="navbar-nav ml-auto d-flex align-items-end gap-4">
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/">Inicio</Link>
+            <Link className="nav-link text-white" to= "/mainpage" onClick={closeNavbar}>Trabajos</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/trabajos">Trabajos</Link>
+              <Link className="nav-link text-white" to="/aboutus" onClick={closeNavbar}>Nosotros</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-white" to="/contacto">Contacto</Link>
+              <Link className="nav-link text-white" to="/contact" onClick={closeNavbar}>Contacto</Link>
             </li>
           </ul>
         </div>

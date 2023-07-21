@@ -2,7 +2,7 @@ import React from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import './carousel.css'
+import './carousel.css';
 import imagen1 from '../../assets/TN.png';
 import imagen2 from '../../assets/Artear.png';
 import imagen4 from '../../assets/Flow.png';
@@ -24,12 +24,13 @@ const Carousel = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5, // Mostrar solo 5 imágenes a la vez
+    slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
     cssEase: 'linear',
     centerMode: true,
+    arrows: false,
     responsive: [
       {
         breakpoint: 768,

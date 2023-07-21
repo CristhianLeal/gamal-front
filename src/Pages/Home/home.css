@@ -1,6 +1,20 @@
-/* body {
-  background-color: black;
-} */
+.home-container {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+#background-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Para ajustar el tamaño del video al contenedor */
+  z-index: -1; /* Coloca el video detrás del contenido */
+}
+
 
 .imagenHome{
   margin-top: 50px;
@@ -9,7 +23,7 @@
 }
 
 .textHome{
-  color: var(--color-text);
+  color: white;
 }
 
 .buttonHome{

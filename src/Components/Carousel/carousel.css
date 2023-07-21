@@ -12,6 +12,8 @@
 .carousel-container {
   width: 80% !important;
   height: auto !important;
+  border-radius: 15px; 
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
