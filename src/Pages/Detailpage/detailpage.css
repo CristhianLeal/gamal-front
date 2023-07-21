@@ -1,3 +1,25 @@
+.fullscreen-image-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.imgDetail:hover{
+  cursor: pointer;
+}
+
+.fullscreen-image {
+  max-width: 90% !important;
+  max-height: 90% !important;
+}
+
 .titleDetail{
   font-size: 70px;
 }
@@ -9,5 +31,9 @@
     font-size: 40px;
   }
 }
-@media (max-width: 600px) {
+@media (min-width: 768px) {
+  .conte{
+    display: flex !important;
+    flex-wrap: wrap !important;
+  }
 }
