@@ -1,9 +1,5 @@
-.text-white {
-  color: white;
-  transition: background-color 1s ease;
-}
-
 .scrolled {
+  transition: background-color 10s ease;
   background-color: red !important;
 }
 
