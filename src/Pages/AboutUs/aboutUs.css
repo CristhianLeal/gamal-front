@@ -7,3 +7,11 @@
 .llego.visible {
   transform: translateX(0);
 }
+.llego2 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(-110%);
+}
+
+.llego2.visible2 {
+  transform: translateX(0);
+}
