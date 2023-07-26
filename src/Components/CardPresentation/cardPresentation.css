@@ -2,10 +2,8 @@
   position: relative;
   border: 1px solid #ccc;
   border-radius: 8px;
-  width: 350px;
   background-color: #fff;
-  overflow: hidden;
-  transition: box-shadow 1s ease-in-out;
+  transition: box-shadow 0.5s ease-in-out;
 }
 
 .cardPresentation:hover {
@@ -13,23 +11,14 @@
 }
 
 .cardPresentation-image {
-  width: 100px;
-  height: 100px;
+  width: 100%;
   border-radius: 50%;
-  position: absolute;
-  left: 10px; 
-  top: 50%;
-  transform: translateY(-50%);
-  transition: box-shadow 0.5s ease-in-out;
 }
 
 .cardPresentation:hover .cardPresentation-image {
-  box-shadow: 4px 4px 12px rgba(0, 128, 0, 0.6);
-}
-
-.cardPresentation-details {
-  padding: 16px;
-  margin-left: 120px;
+  transition: transform 0.5s;
+  transform: scale(1.2);
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.321);
 }
 
 .cardPresentation-title {
@@ -40,6 +29,7 @@
 
 .cardPresentation-description {
   font-size: 14px;
+  text-align: justify;
 }
 
 .circle-iconp {
@@ -52,7 +42,7 @@
   background-color:rgb(255, 255, 255);
   color: rgb(107,156,2);
   font-size: 20px;
-  transition: font-size 0.5s ease-in-out;
+  transition: font-size 0.3s ease-in-out;
 }
 .circle-iconp:hover {
   background-color:rgb(226, 226, 226);

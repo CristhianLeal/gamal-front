@@ -1,7 +1,6 @@
 .llego {
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  transform: translateX(-110%);
-  box-shadow: 0 8px 20px rgba(0, 128, 0, 0.5), 0 16px 32px rgba(0, 128, 0, 0.5);
+  transition: transform 1s ease-in-out;
+  transform: translateX(110%);
 }
 
 .llego.visible {
@@ -13,5 +12,13 @@
 }
 
 .llego2.visible2 {
+  transform: translateX(0);
+}
+.llego3 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(110%);
+}
+
+.llego3.visible3 {
   transform: translateX(0);
 }

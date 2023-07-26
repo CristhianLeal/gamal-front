@@ -3,9 +3,11 @@ import './cardPresentation.css';
 
 const CardPresentation = () => {
   return (
-    <div className="cardPresentation">
-      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" className="card-img-top cardPresentation-image" alt="avatar"></img>
-      <div className="card-body cardPresentation-details">
+    <div className="cardPresentation d-flex flex-row col-md-3 col-11">
+      <div className='d-flex flex-column col-6' >
+        <img src="https://bootdey.com/img/Content/avatar/avatar7.png" className="card-img-top cardPresentation-image " alt="avatar"></img>
+      </div>
+      <div className="card-body cardPresentation-details col-6">
         <h2 className="card-title cardPresentation-title text-center">Título de la Tarjeta</h2>
         <p className="card-text cardPresentation-description ">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
