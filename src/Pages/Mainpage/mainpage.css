@@ -24,6 +24,34 @@ body{
   font-size: 50px;
 }
 
+
+.llegot {
+  transition: transform 1s ease-in-out;
+  transform: translateX(110%);
+}
+
+.llegot.visiblet {
+  transform: translateX(0);
+}
+.llegot2 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(-110%);
+}
+
+.llegot2.visiblet2 {
+  transform: translateX(0);
+}
+.llegot3 {
+  transition: transform 1s ease-in-out;
+  transform: translateY(-300%);
+}
+
+.llegot3.visiblet3 {
+  transform: translateY(0);
+}
+
+
+
 @media (max-width: 800px) {
   .h1Portada{
     font-size: 80px;

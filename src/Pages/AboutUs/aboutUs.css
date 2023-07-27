@@ -1,3 +1,11 @@
+.llego0 {
+  transition: transform 1s ease-in-out;
+  transform: translateY(-110%);
+}
+
+.llego0.visible0 {
+  transform: translateY(0);
+}
 .llego {
   transition: transform 1s ease-in-out;
   transform: translateX(110%);
@@ -21,4 +29,9 @@
 
 .llego3.visible3 {
   transform: translateX(0);
+}
+
+.IconMetric{
+  color: white;
+  font-size: 60px;
 }
