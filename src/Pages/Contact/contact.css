@@ -1,5 +1,49 @@
-.scrolled {
-  transition: background-color 10s ease;
-  background-color: red !important;
+.titleContact{
+  font-size: 80px;
 }
 
+.Efect1 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(110%);
+}
+
+.Efect1.EfectVisible1 {
+  transform: translateX(0);
+}
+.Efect2 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(-110%);
+}
+
+.Efect2.EfectVisible2 {
+  transform: translateX(0);
+}
+
+.ButtonForm{
+  font-size: 25px !important;
+  border-radius: 25px;
+  width: 100px;
+  height: 45px;
+  transition:font-size 0.3s ease-in, box-shadow 0.3s ease-in-out;
+}
+.ButtonForm:hover{
+  font-size: 30px !important;
+  box-shadow: 0 16px 16px rgba(0, 128, 0, 0.5)
+}
+
+.typeForm{
+  font-size: 20px;
+}
+
+.IconContact{
+  color: white;
+  font-size: 60px;
+}
+
+
+@media (max-width: 768px) {
+  .IconContact{
+    color: white;
+    font-size: 40px;
+  }
+}

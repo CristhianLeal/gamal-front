@@ -4,7 +4,7 @@ import './cardProd.css';
 
 const CardProd = () => {
   return (
-    <div className='d-flex flex-row cardProd col-md-4 col-11'>
+    <div className='d-flex flex-row cardProd col-md-4 col-11 m-2'>
       <div className='d-flex align-items-center justify-content-center col-5'>
         <img src={TN} alt="" className='imgProd' />
       </div>

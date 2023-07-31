@@ -35,3 +35,17 @@
   color: white;
   font-size: 60px;
 }
+.IconMetric2{
+  color: white;
+  font-size: 40px;
+}
+
+.TitleH2{
+  font-size: 80px;
+}
+
+@media (max-width: 768px) {
+  .TitleH2{
+    font-size: 40px;
+  }
+}

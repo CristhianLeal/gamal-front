@@ -4,7 +4,7 @@ import './cardComer.css';
 
 const CardComer = () => {
   return (
-    <div className='d-flex flex-column cardComer col-sm-5 col-md-3 col-11'>
+    <div className='d-flex flex-column cardComer col-sm-5 col-md-3 col-11 m-2'>
       <div className='d-flex align-items-center justify-content-center col-12 mt-2'>
         <img src={TN} alt="" className='imgComer' />
       </div>
