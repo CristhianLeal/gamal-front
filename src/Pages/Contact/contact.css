@@ -10,6 +10,7 @@
 .Efect1.EfectVisible1 {
   transform: translateX(0);
 }
+
 .Efect2 {
   transition: transform 1s ease-in-out;
   transform: translateX(-110%);

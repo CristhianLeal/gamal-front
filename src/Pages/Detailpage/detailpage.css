@@ -30,8 +30,31 @@
   font-size: 70px;
 }
 
-@media (max-width: 991px) {
+.Efectd1 {
+  transition: transform 1s ease-in-out;
+  transform: translateY(-110%);
 }
+
+.Efectd1.EfectVisibled1 {
+  transform: translateY(0);
+}
+.Efectd2 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(-110%);
+}
+
+.Efectd2.EfectVisibled2 {
+  transform: translateX(0);
+}
+.Efectd3 {
+  transition: transform 1s ease-in-out;
+  transform: translateX(110%);
+}
+
+.Efectd3.EfectVisibled3 {
+  transform: translateX(0);
+}
+
 @media (max-width: 768px) {
   .titleDetail{
     font-size: 40px;
