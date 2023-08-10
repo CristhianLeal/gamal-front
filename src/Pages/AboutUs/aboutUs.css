@@ -1,3 +1,8 @@
+.conten{
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
 .llego0 {
   transition: transform 1s ease-in-out;
   transform: translateY(-110%);

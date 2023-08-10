@@ -4,6 +4,11 @@
   border-radius: 15px;
 }
 
+.conten{
+  max-width: 100% !important;
+  overflow: hidden !important;
+}
+
 .fullscreen-image-overlay {
   position: fixed;
   top: 0;
@@ -17,8 +22,35 @@
   z-index: 9999;
 }
 
+.scroll-to-reels-button{
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9998;
+}
+.scroll-to-videos-button {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9998;
+}
+.scroll-to-pictures-button{
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+  z-index: 9998;
+}
+
+.SubDetail{
+  font-size: 40px;
+}
+
+.imgDetail{
+  transition: box-shadow 0.3s ease-in-out;
+}
 .imgDetail:hover{
   cursor: pointer;
+  box-shadow: 0 16px 32px rgba(0, 128, 0, 0.5), 0 16px 32px rgba(0, 128, 0, 0.5);
 }
 
 .fullscreen-image {

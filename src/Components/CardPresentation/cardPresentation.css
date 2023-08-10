@@ -3,7 +3,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   background-color: #fff;
-  transition: box-shadow 0.4s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .cardPresentation:hover {

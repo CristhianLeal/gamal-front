@@ -107,7 +107,7 @@ const Contact = () => {
                 {...register('message', {
                   required: 'Este campo es obligatorio',
                   pattern: {
-                  value: /^[A-Za-z0-9._%+-@]{3,250}$/,
+                  value: /^[A-Za-z0-9._%+-@ ]{3,250}$/,
                   maxLength: 250,
                   message: 'Error en el mensaje (Min 3 - Max 250) ',
                   
@@ -122,10 +122,16 @@ const Contact = () => {
       <div ref={ERef2} className={`Efect1 ${contVisible[2] ? 'EfectVisible1' : ''}`}>
         <h3 className='text-white text-center mt-5'>SEGUINOS EN NUESTRAS REDES!</h3>
         <div className='d-flex justify-content-center align-items-center gap-sm-5'>
-          <i className="bi bi-facebook IconContact px-2"></i>
-          <i className="bi bi-twitter IconContact px-2"></i>
-          <i className="bi bi-instagram IconContact px-2"></i>
-          <i className="bi bi-youtube IconContact px-2"></i>
+          <i className="bi bi-facebook IconContact px-2 py-2 facebook"></i>
+          <a className=' text-decoration-none' href="https://www.instagram.com/gamaldigital/" target="_blank">
+            <i className="bi bi-instagram IconContact px-2 py-2 instagram"></i>
+          </a>
+          <a className=' text-decoration-none' href="https://www.tiktok.com/@gamaldigital" target="_blank">
+            <i className="bi bi-tiktok IconContact px-2 py-2 tiktok"></i>
+          </a>
+          <a className=' text-decoration-none' href="https://www.youtube.com/channel/UCbkEnyeMxokKJyZ8ULg-Stw" target="_blank">
+            <i className="bi bi-youtube IconContact px-2 py-2 youtube"></i>
+          </a>
         </div>
       </div>
 

@@ -21,14 +21,14 @@
 }
 
 .ButtonForm{
-  font-size: 25px !important;
+  font-size: 30px !important;
   border-radius: 25px;
   width: 100px;
   height: 45px;
-  transition:font-size 0.3s ease-in, box-shadow 0.3s ease-in-out;
+  transition:font-size 0.2s ease-in, box-shadow 0.2s ease-in-out;
 }
 .ButtonForm:hover{
-  font-size: 30px !important;
+  font-size: 35px !important;
   box-shadow: 0 16px 16px rgba(0, 128, 0, 0.5)
 }
 
@@ -39,12 +39,40 @@
 .IconContact{
   color: white;
   font-size: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.5s ease,;
+}
+.IconContact:hover{
+  border-radius: 20px;
+  font-size: 60px;
+}
+
+.facebook:hover{
+color: #3b5998;
+background-color: rgb(255, 255, 255);
+}
+.instagram:hover{
+color: rgb(147, 57, 128);
+background-color: rgb(255, 255, 255);
+}
+.tiktok:hover{
+color: rgb(0, 0, 0);
+background-color: rgb(255, 255, 255);
+}
+.youtube:hover{
+color: rgb(255, 0, 0);
+background-color: rgb(255, 255, 255);
 }
 
 
 @media (max-width: 768px) {
   .IconContact{
     color: white;
+    font-size: 40px;
+  }
+  .IconContact:hover{
     font-size: 40px;
   }
 }

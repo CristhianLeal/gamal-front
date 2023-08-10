@@ -33,7 +33,7 @@ const Mainpage = () => {
   }, []);
   
   return (
-    <div className='mainPage'>
+    <div className='mainPage conten'>
       <div className='portada d-flex justify-content-center flex-column'>
         <h1 ref={TitleRef1} className={`h1Portada text-center llegot ${TitleVisibilities[0] ? 'visiblet' : ''}`}>SOMOS GAMAL DIGITAL</h1>
           

@@ -37,7 +37,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div>
+    <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUE HACEMOS?</h2>
         <p className='text-white text-center px-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet illo culpa voluptate aut tenetur modi aperiam quidem corrupti a voluptatem nisi tempore deleniti facere quisquam cumque, doloribus harum in saepe?</p>
