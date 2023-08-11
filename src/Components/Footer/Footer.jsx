@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './footer.css';
 import Carousel from '../Carousel/Carousel'
 
@@ -25,7 +26,8 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-      <p className='textFoot text-center'>© Copyright 2023 GAMAL DIGITAL, todos los derechos reservados. Prohibido su uso sin autorización.</p>
+      <p className='textFoot text-center'>© <Link className="text-white text-decoration-none" to= "/login">Copyright</Link> 2023 GAMAL DIGITAL, todos los derechos reservados. Prohibido su uso sin autorización.</p>
+      
     </div>
   );
 };
