@@ -1,5 +1,6 @@
 import React from 'react';
 import './admin.css';
+import { Link } from 'react-router-dom';
 
 const Admin = () => {
   const videoData = [
@@ -67,6 +68,20 @@ const Admin = () => {
             ))}
           </tbody>
         </table>
+        <div className='d-flex flex-wrap justify-content-center mt-4 gap-4'>
+          <button>
+            <Link className=" text-decoration-none text-dark" to="/contact">Inicio</Link>
+          </button>
+          <button>
+            <Link className=" text-decoration-none text-dark" to="/contact">Posts</Link>
+          </button>
+          <button>
+            <Link className=" text-decoration-none text-dark" to="/contact">Nosotros</Link>
+          </button>
+          <button>
+            <Link className=" text-decoration-none text-dark" to="/contact">Productos</Link>
+          </button>
+        </div>
       </div>
     </div>
   );
