@@ -84,12 +84,13 @@ const DetailPage = () => {
 
   return (
     <div className='conten'>
-      <div ref={ERef0} className={`Efectd1 ${contVisible[0] ? 'EfectVisibled1' : ''}`}>
+      <div  ref={ERef0} className={`Efectd1 ${contVisible[0] ? 'EfectVisibled1' : ''}`}>
         <h3 className='text-white text-center titleDetail'>Título</h3>
         <p className='text-white text-center mb-5 px-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, enim ratione in eius, eum quo repellat unde sed incidunt ab itaque earum tempore porro dolorum ipsum cum consequuntur modi quibusdam.</p>
+        <div id="picturesSection"></div>
       </div>
 
-      <div id="picturesSection" ref={ERef1} className={`Efectd2 ${contVisible[1] ? 'EfectVisibled2' : ''}`}>
+      <div  ref={ERef1} className={`Efectd2 ${contVisible[1] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Imagenes</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>
@@ -97,11 +98,12 @@ const DetailPage = () => {
             <img src={imgcard} className="imgDetail border-0 col-md-3 col-11" alt="Imagen" onClick={toggleFullScreenImage} />
             <img src={imgcard} className="imgDetail border-0 col-md-3 col-11" alt="Imagen" onClick={toggleFullScreenImage} />
             <img src={imgcard} className="imgDetail border-0 col-md-3 col-11" alt="Imagen" onClick={toggleFullScreenImage} />
+            <div id="videosSection" ></div>
           </div>
         </div>
       </div>
       
-      <div id="videosSection" ref={ERef2} className={`Efectd3 ${contVisible[2] ? 'EfectVisibled3' : ''}`}>
+      <div  ref={ERef2} className={`Efectd3 ${contVisible[2] ? 'EfectVisibled3' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Videos</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>
@@ -109,11 +111,12 @@ const DetailPage = () => {
             <iframe src="https://www.youtube.com/embed/zpPSBsuNrR0" title="Somos Gamal Digital" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className='videoDetail col-md-5 col-11' style={{ height: '350px' }}></iframe>
             <iframe src="https://www.youtube.com/embed/zpPSBsuNrR0" title="Somos Gamal Digital" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className='videoDetail col-md-5 col-11' style={{ height: '350px' }}></iframe>
             <iframe src="https://www.youtube.com/embed/zpPSBsuNrR0" title="Somos Gamal Digital" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen className='videoDetail col-md-5 col-11' style={{ height: '350px' }}></iframe>
+            <div id="reelsSection" ></div>
           </div>
         </div>
       </div>
       
-      <div id="reelsSection" ref={ERef3} className={`Efectd2 ${contVisible[3] ? 'EfectVisibled2' : ''}`}>
+      <div ref={ERef3} className={`Efectd2 ${contVisible[3] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Reels</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>

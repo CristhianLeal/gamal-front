@@ -55,7 +55,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div>
+    <div className='mt-5 mb-5'>
       <div ref={ERef0} className={`Efect1 ${contVisible[0] ? 'EfectVisible1' : ''}`}>
         <h2 className='text-white text-center titleContact m-0'>CONTACTANOS!</h2>
       </div>
