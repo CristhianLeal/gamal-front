@@ -1,6 +1,6 @@
 import React from 'react';
 import './admin.css';
-import { Link } from 'react-router-dom';
+import AdmBut from '../../Components/AdmBut/AdmBut'
 
 const Admin = () => {
   const videoData = [
@@ -29,7 +29,7 @@ const Admin = () => {
               <th>Video</th>
               <th>
                 <button className="btn btn-primary action-button">
-                  <i className="bi bi-arrow-up-circle"></i> Subir
+                  <i className="bi bi-arrow-up-circle">Subir</i> 
                 </button>
               </th>
             </tr>
@@ -40,7 +40,7 @@ const Admin = () => {
                 </td>
                 <td>
                   <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash"></i> Eliminar
+                    <i className="bi bi-trash">Eliminar</i> 
                   </button>
                 </td>
               </tr>
@@ -49,7 +49,7 @@ const Admin = () => {
               <th>Imagenes</th>
               <th>
                 <button className="btn btn-primary action-button">
-                  <i className="bi bi-arrow-up-circle"></i> Subir
+                  <i className="bi bi-arrow-up-circle">Subir</i> 
                 </button>
               </th>
               
@@ -61,27 +61,14 @@ const Admin = () => {
                 </td>
                 <td>
                   <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash"></i> Eliminar
+                    <i className="bi bi-trash">Eliminar</i> 
                   </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        <div className='d-flex flex-wrap justify-content-center mt-4 gap-4'>
-          <button>
-            <Link className=" text-decoration-none text-dark" to="/contact">Inicio</Link>
-          </button>
-          <button>
-            <Link className=" text-decoration-none text-dark" to="/contact">Posts</Link>
-          </button>
-          <button>
-            <Link className=" text-decoration-none text-dark" to="/contact">Nosotros</Link>
-          </button>
-          <button>
-            <Link className=" text-decoration-none text-dark" to="/contact">Productos</Link>
-          </button>
-        </div>
+        <AdmBut></AdmBut>
       </div>
     </div>
   );

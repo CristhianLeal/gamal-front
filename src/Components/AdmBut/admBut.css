@@ -1,0 +1,8 @@
+.butt:hover{
+  background-color: #79fc8192;
+  color: white !important;
+}
+.butt{
+  color: black;
+  transition: background-color 0.2s ease-in-out;
+}

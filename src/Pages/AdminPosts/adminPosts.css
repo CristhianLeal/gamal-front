@@ -1,0 +1,15 @@
+.action-button {
+  margin-right: 5px;
+}
+
+.table {
+  background-color: #555;
+}
+
+.table thead th {
+  background-color: #0e5213;
+}
+
+.table tbody tr th {
+  background-color: #575757 !important;
+}
