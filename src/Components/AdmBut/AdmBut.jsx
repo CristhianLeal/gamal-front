@@ -14,6 +14,9 @@ const AdmBut = () => {
       <button className='butt'>
         <Link className=" text-decoration-none text-dark" to="/adminabout">Nosotros</Link>
       </button>
+      <button className='butt'>
+        <Link className=" text-decoration-none text-dark" to="/adminusers">Usuarios</Link>
+      </button>
     </div>
   )
 }

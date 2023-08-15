@@ -1,22 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
 import './login.css';
 
 const Login = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [creationCode, setCreationCode] = useState('');
+  const [submitButtonText, setSubmitButtonText] = useState('Login');
+  const [message, setMessage] = useState('');
+
+  const { register, handleSubmit, formState: { errors },reset } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data); 
+    console.log(data);
+    if (creationCode === '112233') {
+      setMessage('Creando usuario...');
+    } else if (creationCode === '') {
+      setMessage('Iniciando sesión...');
+    } else {
+      setMessage('Código incorrecto');
+    }
 
-    
     const isAuthenticated = true;
-    
+
     if (isAuthenticated) {
-      console.log('entro')
-      // window.location.replace("/admin");
+      reset()
       window.location.href='/admin'
     }
+
+  };
+
+  const handleCodeChange = (event) => {
+    const newCode = event.target.value;
+
+    if (newCode.length === 0) {
+      setSubmitButtonText('Login');
+    } else {
+      setSubmitButtonText('Crear Usuario');
+    }
+
+    setCreationCode(newCode);
   };
 
   return (
@@ -48,10 +69,22 @@ const Login = () => {
                   />
                   {errors.password && <span className="error">{errors.password.message}</span>}
                 </div>
+                <div className="form-group">
+                  <label>Código de Creación</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Ingrese el código de creación"
+                    {...register('creationCode')}
+                    onChange={handleCodeChange}
+                  />
+                  {errors.creationCode && <span className="error">{errors.creationCode.message}</span>}
+                </div>
                 <div className="text-center mt-3">
                   <button className="btn btn-primary" type="submit">
-                    Login
+                    {submitButtonText}
                   </button>
+                  <p className="message mt-3">{message}</p>
                 </div>
               </form>
             </div>
@@ -59,7 +92,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default Login;

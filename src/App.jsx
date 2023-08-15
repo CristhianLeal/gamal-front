@@ -3,6 +3,7 @@ import Home from './Pages/Home/Home';
 import Admin from './Pages/Admin/Admin';
 import AdminPosts from './Pages/AdminPosts/AdminPosts';
 import AdminAbout from './Pages/AdminAbout/AdminAbout';
+import AdminUsers from './Pages/AdminUsers/AdminUsers';
 import Mainpage from './Pages/Mainpage/Mainpage';
 import Detailpage from './Pages/Detailpage/Detailpage';
 import DetailPost from './Pages/DetailPost/DetailPost';
@@ -20,6 +21,7 @@ function App() {
   const isAdminpage = location.pathname.includes('/admin');
   const isAdminPostspage = location.pathname.includes('/adminposts');
   const isAdminAboutpage = location.pathname.includes('/adminabout');
+  const isAdminuserspage = location.pathname.includes('/adminusers');
   const isMainpage = location.pathname.includes('/mainpage');
   const isDetailpage = location.pathname.includes('/detailpage');
   const isDetailPost = location.pathname.includes('/detailpost');
@@ -29,7 +31,7 @@ function App() {
   const isAboutUs = location.pathname.includes('/aboutus');
   const isLogin = location.pathname.includes('/login');
   
-  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin ||isAdminPostspage || isAdminAboutpage || isDetailAbout || isDetailPost || isregisterpost;
+  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin ||isAdminPostspage || isAdminAboutpage || isDetailAbout || isDetailPost || isregisterpost || isAdminuserspage;
   const shouldRenderFoot = !(location.pathname === '/');
 
   return (
@@ -40,6 +42,7 @@ function App() {
         <Route path='/admin' element={<Admin />} />
         <Route path='/adminposts' element={<AdminPosts />} />
         <Route path='/adminabout' element={<AdminAbout />} />
+        <Route path='/adminusers' element={<AdminUsers />} />
         <Route path='/mainpage' element={<Mainpage />} />
         <Route path='/detailpage' element={<Detailpage />} />
         <Route path='/detailpost/:id' element={<DetailPost />} />
