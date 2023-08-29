@@ -1,17 +1,17 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 import './login.css'
 
 const Login = () => {
   const [code, setCreationCode] = useState('')
   const [submitButtonText, setSubmitButtonText] = useState('Login')
   const [message, setMessage] = useState('')
-
-  const { register, handleSubmit, formState: { errors },reset } = useForm()
+  const { register, handleSubmit, formState: { errors },reset} = useForm()
 
   const onSubmit = async (data) => {
-    console.log(data);
+    console.log(data)
     if (code === '112233') {
       setMessage('Creando usuario...')
       try {
@@ -20,37 +20,51 @@ const Login = () => {
           password: data.password,
           code: data.code
         });
-        setMessage(response.data.message);
+        if (response.status === 201) {
+          toast.success(response.data.message)
+        }else {
+          toast.error(response.data)
+        }
       } catch (error) {
-        console.error('Error al crear usuario', error);
-        setMessage('Error al crear usuario');
+        console.error('Error al crear usuario', error)
+        toast.error(error.response.data.message)
+        setMessage('Error al crear usuario')
       }
     } else if (code === '') {
       setMessage('Iniciando sesión...')
+      try {
+        const response = await axios.post('http://localhost:8003/users/login', {
+          email: data.email,
+          password: data.password
+        })
+        if (response.status === 200) {
+          toast.success(`${response.data.user.email},logueado `)
+          sessionStorage.setItem('token',response.data.token)
+          sessionStorage.setItem('user',data.email)
+          reset()
+          window.location.href='/admin'
+          console.log(response.data.token)
+        }else{
+          toast.error(response.data.message)
+        }
+      } catch (error) {
+        console.log(error)
+      }
     } else {
+      toast.error('Código incorrecto')
       setMessage('Código incorrecto')
     }
-
-    const isAuthenticated = true;
-
-    if (isAuthenticated) {
-      // reset()
-      // window.location.href='/admin'
-    }
-
-  };
+  }
 
   const handleCodeChange = (event) => {
     const newCode = event.target.value
-
     if (newCode.length === 0) {
       setSubmitButtonText('Login')
     } else {
       setSubmitButtonText('Crear Usuario')
     }
-
     setCreationCode(newCode)
-  };
+  }
 
   return (
     <div className="login-container mt-5 mb-5">
