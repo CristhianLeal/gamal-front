@@ -1,18 +1,24 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/GamalDigitalColor.png'
 import './navbar.css'
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false)
+  const [user, setUser] = useState('')
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
-  };
-
+  }
   const closeNavbar = () => {
     setIsOpen(false);
-  };
+  }
+  const handleClick = () => {
+    sessionStorage.clear()
+    window.location.href = '/'
+  }
+  useEffect(() => {
+    setUser(sessionStorage.getItem('user')) 
+  }, [])
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top text-white navTotal">
@@ -35,6 +41,18 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link text-white" to="/contact" onClick={closeNavbar}>Contacto</Link>
             </li>
+            {
+              user !== null &&
+                <li className=''>
+                  <Link className="nav-link text-white" to="/admin" onClick={closeNavbar}>Administración</Link>
+                </li>
+            }
+            {
+              user !== null &&
+                <li>
+                  <Link className="nav-link text-white" onClick={handleClick}>Cerrar sesión</Link>
+                </li>
+            }
           </ul>
         </div>
       </div>
