@@ -1,19 +1,9 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
-import Home from './Pages/Home/Home';
-import Admin from './Pages/Admin/Admin';
-import AdminPosts from './Pages/AdminPosts/AdminPosts';
-import AdminAbout from './Pages/AdminAbout/AdminAbout';
-import AdminUsers from './Pages/AdminUsers/AdminUsers';
-import Mainpage from './Pages/Mainpage/Mainpage';
-import Detailpage from './Pages/Detailpage/Detailpage';
-import DetailPost from './Pages/DetailPost/DetailPost';
-import DetailAbout from './Pages/DetailAbout/DetailAbout';
-import RegisterPost from './Pages/RegisterPost/RegisterPost';
-import Contact from './Pages/Contact/Contact';
-import AboutUs from './Pages/AboutUs/AboutUs';
+import {AboutUs, Admin, AdminAbout, AdminPosts, AdminUsers, Contact, DetailAbout, Detailpage, DetailPost, Home, Login, Mainpage, RegisterPost } from './Pages'
 import Nav from './Components/Navbar/Navbar';
 import Foot from './Components/Footer/Footer';
-import Login from './Pages/Login/Login'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import './App.css';
 
 function App() {
@@ -53,6 +43,10 @@ function App() {
         <Route path='/login' element={<Login />} />
       </Routes>
       {shouldRenderFoot && <Foot />}
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+      />
     </>
   );
 }
