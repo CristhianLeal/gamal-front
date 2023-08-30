@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '../../assets/GamalDigitalColor.png'
 import './navbar.css'
 
@@ -7,17 +7,17 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [user, setUser] = useState('')
   const toggleNavbar = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(!isOpen)
   }
   const closeNavbar = () => {
-    setIsOpen(false);
+    setIsOpen(false)
   }
   const handleClick = () => {
     sessionStorage.clear()
     window.location.href = '/'
   }
   useEffect(() => {
-    setUser(sessionStorage.getItem('user')) 
+    setUser(sessionStorage.getItem('user'))
   }, [])
 
   return (
@@ -57,7 +57,7 @@ const Navbar = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

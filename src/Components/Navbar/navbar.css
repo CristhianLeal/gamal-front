@@ -42,8 +42,10 @@
   bottom: -5px;
   transform-origin: right;
 }
+
 .nav-link:hover {
-  font-size: 1.4em;
+  transform: scale(1.4);
+  transition: transform 0.3s ease-in-out;
 }
 
 .nav-link:hover::before,
