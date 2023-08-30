@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation } from 'react-router-dom';
 import {AboutUs, Admin, AdminAbout, AdminPosts, AdminUsers, Contact, DetailAbout, Detailpage, DetailPost, Home, Login, Mainpage, RegisterPost } from './Pages'
-import Nav from './Components/Navbar/Navbar';
-import Foot from './Components/Footer/Footer';
+import {Navbar, Footer} from './Components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import './App.css';
@@ -26,7 +25,7 @@ function App() {
 
   return (
     <>
-      {renderNavAndFoot && <Nav />}
+      {renderNavAndFoot && <Navbar />}
       <Routes>
         <Route exact path='/' element={<Home />} />
         <Route path='/admin' element={<Admin />} />
@@ -42,7 +41,7 @@ function App() {
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
       </Routes>
-      {shouldRenderFoot && <Foot />}
+      {shouldRenderFoot && <Footer />}
       <ToastContainer
         position="top-right"
         autoClose={2000}

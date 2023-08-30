@@ -1,0 +1,8 @@
+export {default as AdmBut} from './AdmBut/AdmBut'
+export {default as Card} from './Card/Card'
+export {default as CardComer} from './CardComer/CardComer'
+export {default as CardPresentation} from './CardPresentation/CardPresentation'
+export {default as CardProd} from './CardProd/CardProd'
+export {default as Carousel} from './Carousel/Carousel'
+export {default as Footer} from './Footer/Footer'
+export {default as Navbar} from './Navbar/Navbar'
