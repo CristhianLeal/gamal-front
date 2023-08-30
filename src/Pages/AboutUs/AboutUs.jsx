@@ -1,40 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
-import './aboutUs.css';
-import CardPresentation from '../../Components/CardPresentation/CardPresentation';
-import CardProd from '../../Components/CardProd/CardProd';
-import CardComer from '../../Components/CardComer/CardComer';
+import { useEffect, useRef, useState } from 'react'
+import './aboutUs.css'
+import { CardPresentation, CardProd, CardComer } from '../../Components'
 
 const AboutUs = () => {
-  const [isVisible, setVisible] = useState(false);
-  const [cardVisibilities, setCardVisibilities] = useState([]);
+  const [cardVisibilities, setCardVisibilities] = useState([])
 
-  const ElementRef0 = useRef(null);
-  const ElementRef1 = useRef(null);
-  const ElementRef2 = useRef(null);
-  const ElementRef3 = useRef(null);
-  const ElementRef4 = useRef(null);
+  const ElementRef0 = useRef(null)
+  const ElementRef1 = useRef(null)
+  const ElementRef2 = useRef(null)
+  const ElementRef3 = useRef(null)
+  const ElementRef4 = useRef(null)
 
   const handleScroll = () => {
-    const refs = [ElementRef0,ElementRef1, ElementRef2,ElementRef3, ElementRef4];
+    const refs = [ElementRef0, ElementRef1, ElementRef2, ElementRef3, ElementRef4]
     const visibilities = refs.map((ref) => {
       if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        return rect.top <= window.innerHeight && rect.bottom >= 0;
+        const rect = ref.current.getBoundingClientRect()
+        return rect.top <= window.innerHeight && rect.bottom >= 0
       }
-      return false;
-    });
-    setVisible(visibilities.some((visibility) => visibility));
-    setCardVisibilities(visibilities);
-  };
+      return false
+    })
+    setCardVisibilities(visibilities)
+  }
 
   useEffect(() => {
-    handleScroll();
-    window.scrollTo(0, 0);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll()
+    window.scrollTo(0, 0)
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className='conten'>
@@ -42,7 +38,7 @@ const AboutUs = () => {
         <h2 className='text-white text-center TitleH2'>QUE HACEMOS?</h2>
         <p className='text-white text-center px-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet illo culpa voluptate aut tenetur modi aperiam quidem corrupti a voluptatem nisi tempore deleniti facere quisquam cumque, doloribus harum in saepe?</p>
       </div>
-      <div  ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
+      <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
         <div className='d-flex flex-wrap align-items-center justify-content-center gap-5'>
             <CardPresentation />
@@ -74,15 +70,15 @@ const AboutUs = () => {
         <div className='d-flex flex-column'>
           <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center'>
             <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
-              <i class="bi bi-people-fill IconMetric px-2"></i>
+              <i className="bi bi-people-fill IconMetric px-2"></i>
               <p className='text-white text-center m-0 px-3 py-2'>People</p>
             </div>
             <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
-              <i class="bi bi-gender-male IconMetric px-2"></i>
+              <i className="bi bi-gender-male IconMetric px-2"></i>
               <p className='text-white text-center m-0 px-3 py-2'>MAN</p>
             </div>
             <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
-              <i class="bi bi-gender-female IconMetric px-2"></i>
+              <i className="bi bi-gender-female IconMetric px-2"></i>
               <p className='text-white text-center m-0 px-3 py-2'>WOMAN</p>
             </div>
           </div>
@@ -98,7 +94,7 @@ const AboutUs = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AboutUs;
+export default AboutUs

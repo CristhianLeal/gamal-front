@@ -1,17 +1,17 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import GamalDigitalColor from '../../assets/GamalDigitalColor.png'
 import './home.css'
-import Video from '../../assets/Intro.mp4';
-import Foot from '../../Components/Footer/Footer'
+import Video from '../../assets/Intro.mp4'
+import { Footer } from '../../Components'
 
 const Home = () => {
   useEffect(() => {
-    const video = document.getElementById('background-video');
-    video.play(); // Reproducir el video automáticamente
-  }, []);
+    const video = document.getElementById('background-video')
+    video.play()
+  }, [])
+
   return (
-    
     <div className="home-container">
       <video
         id="background-video"
@@ -26,7 +26,7 @@ const Home = () => {
       </video>
       <div>
         <Link to="/mainpage" className="d-flex align-items-center justify-content-center ">
-          <img src={GamalDigitalColor} alt="GamalDigitalColor"  className='imagenHome'/>
+          <img src={GamalDigitalColor} alt="GamalDigitalColor" className='imagenHome'/>
         </Link>
       </div>
       <div className='mt-5 titleMedia'>
@@ -42,7 +42,7 @@ const Home = () => {
           </button>
         </Link>
       </div>
-      <Foot></Foot>
+      <Footer></Footer>
     </div>
   )
 }
