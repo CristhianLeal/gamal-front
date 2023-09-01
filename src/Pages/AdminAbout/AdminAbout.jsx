@@ -1,20 +1,18 @@
-import React from 'react';
-import './adminAbout.css';
+import './adminAbout.css'
 import AdmBut from '../../Components/AdmBut/AdmBut'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const AdminAbout = () => {
   const AboutData = [
-    { id: 1, name: 'juan', description: 'groso',image: 'link',email:'pepe@mail.com'},
-    { id: 2, name: 'pedro', description: 'groso2',image: 'link2',email:'pepe2@mail.com'},
-    { id: 3, name: 'nico', description: 'groso3',image: 'link3',email:'pepe3@mail.com'}
-  ];
+    { id: 1, name: 'juan', description: 'groso', image: 'link', email: 'pepe@mail.com' },
+    { id: 2, name: 'pedro', description: 'groso2', image: 'link2', email: 'pepe2@mail.com' },
+    { id: 3, name: 'nico', description: 'groso3', image: 'link3', email: 'pepe3@mail.com' }
+  ]
   const ProdData = [
-    { id: 1, title: 'juan2', description: 'grosos',image: 'links' ,format:'Description1'},
-    { id: 2, title: 'pedro3', description: 'grosos2',image: 'links2',format:'Description2'},
-    { id: 3, title: 'nico4', description: 'grosos3',image: 'links3',format:'Description3'}
-  ];
-
+    { id: 1, title: 'juan2', description: 'grosos', image: 'links', format: 'Description1' },
+    { id: 2, title: 'pedro3', description: 'grosos2', image: 'links2', format: 'Description2' },
+    { id: 3, title: 'nico4', description: 'grosos3', image: 'links3', format: 'Description3' }
+  ]
 
   return (
     <div className="admin-container mt-5">
@@ -30,7 +28,7 @@ const AdminAbout = () => {
               <th>
                   Acciones
                 <button className="btn btn-primary action-button mx-2">
-                  <i className="bi bi-arrow-up-circle"> Subir Persona </i> 
+                  <i className="bi bi-arrow-up-circle"> Subir Persona </i>
                 </button>
               </th>
             </tr>
@@ -52,10 +50,10 @@ const AdminAbout = () => {
                 </td>
                 <td>
                   <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash">Eliminar</i> 
+                    <i className="bi bi-trash">Eliminar</i>
                   </button>
                   <button className="btn btn-success action-button">
-                    <i className="bi bi-pen">Editar</i> 
+                    <i className="bi bi-pen">Editar</i>
                   </button>
                 </td>
               </tr>
@@ -73,7 +71,7 @@ const AdminAbout = () => {
               <th>
                   Acciones
                 <button className="btn btn-primary action-button mx-2">
-                  <i className="bi bi-arrow-up-circle"> Subir Card </i> 
+                  <i className="bi bi-arrow-up-circle"> Subir Card </i>
                 </button>
               </th>
             </tr>
@@ -95,7 +93,7 @@ const AdminAbout = () => {
                 </td>
                 <td>
                   <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash">Eliminar</i> 
+                    <i className="bi bi-trash">Eliminar</i>
                   </button>
                   <button className="btn btn-success action-button">
                     <Link className='text-decoration-none text-white' to={`/detailabout/${item.id}`}>
@@ -110,7 +108,7 @@ const AdminAbout = () => {
         <AdmBut></AdmBut>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminAbout;
+export default AdminAbout
