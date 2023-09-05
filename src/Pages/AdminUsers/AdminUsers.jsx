@@ -25,7 +25,7 @@ const AdminUsers = () => {
       console.log(response.data)
       if (response.status === 200) {
         toast.success(response.data.message)
-      }else {
+      } else {
         toast.error(response.data)
       }
     } catch (error) {
@@ -60,8 +60,8 @@ const AdminUsers = () => {
                   <p>{item.password}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button" onClick={()=>deleteUser(item._id) }>
-                    <i className="bi bi-trash">Eliminar</i> 
+                  <button className="btn btn-danger action-button" onClick={() => deleteUser(item._id) }>
+                    <i className="bi bi-trash">Eliminar</i>
                   </button>
                 </td>
               </tr>
