@@ -8,10 +8,9 @@ const Login = () => {
   const [code, setCreationCode] = useState('')
   const [submitButtonText, setSubmitButtonText] = useState('Login')
   const [message, setMessage] = useState('')
-  const { register, handleSubmit, formState: { errors },reset} = useForm()
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
 
   const onSubmit = async (data) => {
-    console.log(data)
     if (code === '112233') {
       setMessage('Creando usuario...')
       try {
@@ -19,10 +18,10 @@ const Login = () => {
           email: data.email,
           password: data.password,
           code: data.code
-        });
+        })
         if (response.status === 201) {
           toast.success(response.data.message)
-        }else {
+        } else {
           toast.error(response.data)
         }
       } catch (error) {
@@ -39,12 +38,12 @@ const Login = () => {
         })
         if (response.status === 200) {
           toast.success(`${response.data.user.email},logueado `)
-          sessionStorage.setItem('token',response.data.token)
-          sessionStorage.setItem('user',data.email)
+          sessionStorage.setItem('token', response.data.token)
+          sessionStorage.setItem('user', data.email)
           reset()
-          window.location.href='/admin'
+          window.location.href = '/admin'
           console.log(response.data.token)
-        }else{
+        } else {
           toast.error(response.data.message)
         }
       } catch (error) {
