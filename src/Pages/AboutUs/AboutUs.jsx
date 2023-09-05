@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './aboutUs.css'
 import { CardPresentation, CardProd, CardComer } from '../../Components'
+import axios from 'axios'
 
 const AboutUs = () => {
   const [cardVisibilities, setCardVisibilities] = useState([])
@@ -31,6 +32,28 @@ const AboutUs = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
+  const [personsData, setPersonsData] = useState([])
+  const [productsData, setProductsData] = useState([])
+  useEffect(() => {
+    const fetchPersons = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/persons')
+        setPersonsData(response.data.persons)
+      } catch (error) {
+        console.error('Error al obtener los datos de las personas:', error)
+      }
+    }
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/products')
+        setProductsData(response.data.products)
+      } catch (error) {
+        console.error('Error al obtener los datos de los productos:', error)
+      }
+    }
+    fetchPersons()
+    fetchProducts()
+  }, [])
 
   return (
     <div className='conten'>
@@ -41,28 +64,25 @@ const AboutUs = () => {
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
         <div className='d-flex flex-wrap align-items-center justify-content-center gap-5'>
-            <CardPresentation />
-            <CardPresentation />
-            <CardPresentation />
-            <CardPresentation />
+          {personsData.map((person) => (
+            <CardPresentation key={person._id} person={person} />
+          ))}
         </div>
       </div>
       <div ref={ElementRef2} className={`mt-5 llego2 ${cardVisibilities[2] ? 'visible2' : ''}`}>
         <h2 className='text-white text-center TitleH2'>NUESTROS PRODUCTOS</h2>
         <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
-          <CardProd></CardProd>
-          <CardProd></CardProd>
-          <CardProd></CardProd>
-          <CardProd></CardProd>
+          {productsData.map((product) => (
+            <CardProd key={product._id} product={product} />
+          ))}
         </div>
       </div>
       <div ref={ElementRef3} className={`mt-5 llego3 ${cardVisibilities[3] ? 'visible3' : ''}`}>
         <h2 className='text-white text-center TitleH2'>FORMATOS COMERCIALES</h2>
         <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
-          <CardComer></CardComer>
-          <CardComer></CardComer>
-          <CardComer></CardComer>
-          <CardComer></CardComer>
+          {productsData.map((product) => (
+            <CardComer key={product._id} product={product} />
+          ))}
         </div>
       </div>
       <div ref={ElementRef4} className={`mt-5 llego2 ${cardVisibilities[4] ? 'visible2' : ''}`}>
