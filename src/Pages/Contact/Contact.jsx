@@ -1,58 +1,51 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import axios from 'axios';
-import './contact.css';
+import { useEffect, useRef, useState } from 'react'
+import { useForm } from 'react-hook-form'
+import axios from 'axios'
+import './contact.css'
 
 const Contact = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+
   const onSubmit = async (data) => {
     try {
-      const response = await axios.post('/enviarCorreo', data);
+      const response = await axios.post('/enviarCorreo', data)
       console.log('entro')
       if (response.status === 200) {
-        console.log('Mensaje enviado correctamente.');
-        reset();
+        console.log('Mensaje enviado correctamente.')
+        reset()
       } else {
-        console.log('Error al enviar el mensaje.');
+        console.log('Error al enviar el mensaje.')
       }
     } catch (error) {
-      console.error('Error de red:', error);
+      console.error('Error de red:', error)
     }
-  };
+  }
+  const [contVisible, setContVisible] = useState([])
 
-  const [isVisibleC, setVisibleC] = useState(false);
-  const [contVisible, setContVisible] = useState([]);
-
-  const ERef0 = useRef(null);
-  const ERef1 = useRef(null);
-  const ERef2 = useRef(null);
+  const ERef0 = useRef(null)
+  const ERef1 = useRef(null)
+  const ERef2 = useRef(null)
 
   const handleScroll = () => {
-    const refs = [ERef0,ERef1,ERef2];
+    const refs = [ERef0, ERef1, ERef2]
     const visibilities = refs.map((ref) => {
       if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
-        return rect.top <= window.innerHeight && rect.bottom >= 0;
+        const rect = ref.current.getBoundingClientRect()
+        return rect.top <= window.innerHeight && rect.bottom >= 0
       }
-      return false;
-    });
-    setVisibleC(visibilities.some((visibility) => visibility));
-    setContVisible(visibilities);
-  };
+      return false
+    })
+    setContVisible(visibilities)
+  }
 
   useEffect(() => {
-    handleScroll();
-    window.scrollTo(0, 0);
-    window.addEventListener('scroll', handleScroll);
+    handleScroll()
+    window.scrollTo(0, 0)
+    window.addEventListener('scroll', handleScroll)
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <div className='mt-5 mb-5'>
@@ -73,9 +66,9 @@ const Contact = () => {
                   required: 'Este campo es obligatorio',
                   pattern: {
                     value: /^[A-Za-z]{3,30}$/,
-                    message: 'Ingresá solo letras (Min 3 - Max 30) ',
-                    
-                  },
+                    message: 'Ingresá solo letras (Min 3 - Max 30) '
+
+                  }
                 })}
               />
             </div>
@@ -92,8 +85,8 @@ const Contact = () => {
                   pattern: {
                     value: /^[A-Za-z0-9._%+-]{3,30}@[A-Z0-9.-]{3,10}\.[A-Z]{2,4}$/i,
                     maxLength: 50,
-                    message: 'Dirección de correo inválida (Max 50)',
-                  },
+                    message: 'Dirección de correo inválida (Max 50)'
+                  }
                 })}
               />
             </div>
@@ -107,36 +100,37 @@ const Contact = () => {
                 {...register('message', {
                   required: 'Este campo es obligatorio',
                   pattern: {
-                  value: /^[A-Za-z0-9._%+-@ ]{3,250}$/,
-                  maxLength: 250,
-                  message: 'Error en el mensaje (Min 3 - Max 250) ',
-                  
-                }, })}
+                    value: /^[A-Za-z0-9._%+-@ ]{3,250}$/,
+                    maxLength: 250,
+                    message: 'Error en el mensaje (Min 3 - Max 250) '
+
+                  }
+                })}
               />
             </div>
             {errors.message && <span className='text-danger'>{errors.message.message}</span>}
             <button className='ButtonForm p-1 d-flex justify-content-center align-items-center' type='submit'>Enviar</button>
         </form>
       </div>
-      
+
       <div ref={ERef2} className={`Efect1 ${contVisible[2] ? 'EfectVisible1' : ''}`}>
         <h3 className='text-white text-center mt-5'>SEGUINOS EN NUESTRAS REDES!</h3>
         <div className='d-flex justify-content-center align-items-center gap-sm-5'>
           <i className="bi bi-facebook IconContact px-2 py-2 facebook"></i>
-          <a className=' text-decoration-none' href="https://www.instagram.com/gamaldigital/" target="_blank">
+          <a className=' text-decoration-none' href="https://www.instagram.com/gamaldigital/" target="_blank" rel="noreferrer">
             <i className="bi bi-instagram IconContact px-2 py-2 instagram"></i>
           </a>
-          <a className=' text-decoration-none' href="https://www.tiktok.com/@gamaldigital" target="_blank">
+          <a className=' text-decoration-none' href="https://www.tiktok.com/@gamaldigital" target="_blank" rel="noreferrer">
             <i className="bi bi-tiktok IconContact px-2 py-2 tiktok"></i>
           </a>
-          <a className=' text-decoration-none' href="https://www.youtube.com/channel/UCbkEnyeMxokKJyZ8ULg-Stw" target="_blank">
+          <a className=' text-decoration-none' href="https://www.youtube.com/channel/UCbkEnyeMxokKJyZ8ULg-Stw" target="_blank" rel="noreferrer">
             <i className="bi bi-youtube IconContact px-2 py-2 youtube"></i>
           </a>
         </div>
       </div>
 
     </div>
-  );
-};
+  )
+}
 
-export default Contact;
+export default Contact

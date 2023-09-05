@@ -105,7 +105,7 @@ const RegisterPerson = () => {
           <div className="mb-3">
             <label className="form-label">Gmail</label>
             <input
-            type="email"
+            type="text"
             className={`form-control ${errors.gmail ? 'is-invalid' : ''}`}
             placeholder="email@gmail.com"
             {...register('gmail', {
