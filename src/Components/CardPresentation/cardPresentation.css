@@ -20,7 +20,9 @@
   transform: scale(1.2);
   box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.321);
 }
-
+.contText{
+  z-index: 1;
+}
 .cardPresentation-title {
   font-size: 20px;
   font-weight: bold;

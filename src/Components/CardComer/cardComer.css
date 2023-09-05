@@ -7,9 +7,12 @@
 .cardComer:hover{
   box-shadow: 0 16px 32px rgba(0, 128, 0, 0.5), 0 16px 32px rgba(0, 128, 0, 0.5);
 }
-
+.contText{
+  z-index: 1;
+}
 .imgComer{
   width: 50%;
+  border-radius: 20px;
 }
 .cardComer:hover .imgComer{
   transition: transform .2s;
