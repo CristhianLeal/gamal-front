@@ -1,5 +1,5 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { AboutUs, Admin, AdminAbout, AdminPosts, AdminUsers, Contact, DetailAbout, Detailpage, DetailPost, Home, Login, Mainpage, RegisterPost, RegisterPerson } from './Pages'
+import { AboutUs, Admin, AdminAbout, AdminPosts, AdminUsers, Contact, DetailAbout, Detailpage, DetailPost, Home, Login, Mainpage, RegisterPost, RegisterPerson, RegisterProduct } from './Pages'
 import { Navbar, Footer } from './Components'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -17,11 +17,12 @@ function App () {
   const isDetailAbout = location.pathname.includes('/detailabout')
   const isregisterpost = location.pathname.includes('/registerpost')
   const isregisterperson = location.pathname.includes('/registerperson')
+  const isregisterproduct = location.pathname.includes('/registerproduct')
   const isContact = location.pathname.includes('/contact')
   const isAboutUs = location.pathname.includes('/aboutus')
   const isLogin = location.pathname.includes('/login')
 
-  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin || isAdminPostspage || isAdminAboutpage || isDetailAbout || isDetailPost || isregisterpost || isAdminuserspage || isregisterperson
+  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin || isAdminPostspage || isAdminAboutpage || isDetailAbout || isDetailPost || isregisterpost || isAdminuserspage || isregisterperson || isregisterproduct
   const shouldRenderFoot = !(location.pathname === '/')
 
   return (
@@ -39,6 +40,7 @@ function App () {
         <Route path='/detailabout/:id' element={<DetailAbout />} />
         <Route path='/registerpost' element={<RegisterPost />} />
         <Route path='/registerperson' element={<RegisterPerson />} />
+        <Route path='/registerproduct' element={<RegisterProduct />} />
         <Route path='/contact' element={<Contact />} />
         <Route path='/aboutus' element={<AboutUs />} />
         <Route path='/login' element={<Login />} />
