@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom'
 const RegisterPerson = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const onSubmit = async (data) => {
-    console.log(data)
     try {
       const response = await axios.post('http://localhost:8003/persons', data)
       if (response.status === 201) {
@@ -16,7 +15,7 @@ const RegisterPerson = () => {
         toast.error(response.data)
       }
     } catch (error) {
-      console.error('Error al crear usuario', error)
+      console.error('Error al crear persona', error)
       toast.error(error.response.data.message)
     }
     reset()
