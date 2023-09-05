@@ -1,13 +1,12 @@
-import { useForm } from 'react-hook-form';
-import './registerPost.css';
+import { useForm } from 'react-hook-form'
+import './registerPost.css'
 
 const RegisterPost = () => {
-  const { register, handleSubmit, formState: { errors },reset } = useForm();
-
+  const { register, handleSubmit, formState: { errors }, reset } = useForm()
   const onSubmit = (data) => {
-    console.log(data);
-    reset()//borra valores
-  };
+    console.log(data)
+    reset()
+  }
 
   return (
     <div className="background-black">
@@ -45,7 +44,7 @@ const RegisterPost = () => {
         </form>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RegisterPost;
+export default RegisterPost
