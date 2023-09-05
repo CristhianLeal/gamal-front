@@ -7,26 +7,33 @@ import { toast } from 'react-toastify'
 
 const AdminAbout = () => {
   const [personsData, setPersonsData] = useState([])
+  const [productsData, setProductsData] = useState([])
   const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
     const fetchPersons = async () => {
       try {
         const response = await axios.get('http://localhost:8003/persons')
-        console.log(response)
         setPersonsData(response.data.persons)
       } catch (error) {
-        console.error('Error al obtener los datos de los usuarios:', error)
+        console.error('Error al obtener los datos de las personas:', error)
+      }
+    }
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/products')
+        setProductsData(response.data.products)
+      } catch (error) {
+        console.error('Error al obtener los datos de los productos:', error)
       }
     }
     fetchPersons()
+    fetchProducts()
   }, [deleted])
 
   const deletePerson = async (id) => {
-    console.log('entro')
     try {
       const response = await axios.delete(`http://localhost:8003/persons/${id}`)
-      console.log(response.data)
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -34,122 +41,126 @@ const AdminAbout = () => {
         toast.error(response.data)
       }
     } catch (error) {
-      console.error('Error al obtener los datos de los usuarios:', error)
+      console.error('Error al intentar eliminar la persona:', error)
     }
   }
-
-  const ProdData = [
-    { id: 1, title: 'juan2', description: 'grosos', image: 'links', format: 'Description1' },
-    { id: 2, title: 'pedro3', description: 'grosos2', image: 'links2', format: 'Description2' },
-    { id: 3, title: 'nico4', description: 'grosos3', image: 'links3', format: 'Description3' }
-  ]
+  const deleteProduct = async (id) => {
+    console.log('entro')
+    try {
+      const response = await axios.delete(`http://localhost:8003/products/${id}`)
+      if (response.status === 200) {
+        toast.success(response.data.message)
+        setDeleted(!deleted)
+      } else {
+        toast.error(response.data)
+      }
+    } catch (error) {
+      console.error('Error al intentar eliminar el producto:', error)
+    }
+  }
 
   return (
     <div className="admin-container mt-5">
       <div className='container'>
         <h2 className="text-center text-white">Nosotros</h2>
-        <div className=''>
-          <table className="table table-dark table-bordered">
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Imagen</th>
-                <th>Instagram</th>
-                <th>Tiktok</th>
-                <th>Gmail</th>
-                <th>
-                  Acciones
-                  <Link className='text-decoration-none text-white' to={'/registerperson'}>
-                    <button className="btn btn-primary action-button mx-2">
-                      <i className="bi bi-arrow-up-circle"> Subir Persona </i>
-                    </button>
-                  </Link>
-                </th>
+        <table className="table table-dark table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Imagen</th>
+              <th>Instagram</th>
+              <th>Tiktok</th>
+              <th>Gmail</th>
+              <th>
+                Acciones
+                <Link className='text-decoration-none text-white' to={'/registerperson'}>
+                  <button className="btn btn-primary action-button mx-2">
+                    <i className="bi bi-arrow-up-circle"> Subir Persona </i>
+                  </button>
+                </Link>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {personsData?.map((item) => (
+              <tr key={item._id}>
+                <td>
+                  <p className='m-0'>{item.name}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.description}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.picture}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.insta}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.tiktok}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.gmail}</p>
+                </td>
+                <td>
+                  <button className="btn btn-danger action-button" onClick={() => deletePerson(item._id) }>
+                    <i className="bi bi-trash">Eliminar</i>
+                  </button>
+                  <button className="btn btn-success action-button">
+                    <i className="bi bi-pen">Editar</i>
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {personsData?.map((item) => (
-                <tr key={item._id}>
-                  <td>
-                    <p className='m-0'>{item.name}</p>
-                  </td>
-                  <td>
-                    <p className='m-0'>{item.description}</p>
-                  </td>
-                  <td>
-                    <p className='m-0'>{item.picture}</p>
-                  </td>
-                  <td>
-                    <p className='m-0'>{item.insta}</p>
-                  </td>
-                  <td>
-                    <p className='m-0'>{item.tiktok}</p>
-                  </td>
-                  <td>
-                    <p className='m-0'>{item.gmail}</p>
-                  </td>
-                  <td>
-                    <button className="btn btn-danger action-button" onClick={() => deletePerson(item._id) }>
-                      <i className="bi bi-trash">Eliminar</i>
-                    </button>
-                    <button className="btn btn-success action-button">
-                      <i className="bi bi-pen">Editar</i>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
 
         <h2 className="mt-3 text-center text-white">Productos</h2>
-        <div className="table-responsive">
-          <table className="table table-dark table-bordered">
-            <thead>
-              <tr>
-                <th>Titulo</th>
-                <th>Descripción</th>
-                <th>Imagen</th>
-                <th>Formato</th>
-                <th>
-                  Acciones
+        <table className="table table-dark table-bordered">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Imagen</th>
+              <th>Formato</th>
+              <th>
+                Acciones
+                <Link className='text-decoration-none text-white' to={'/registerproduct'}>
                   <button className="btn btn-primary action-button mx-2">
-                    <i className="bi bi-arrow-up-circle"> Subir Card </i>
+                    <i className="bi bi-arrow-up-circle"> Subir Producto </i>
                   </button>
-                </th>
+                </Link>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {productsData?.map((item) => (
+              <tr key={item._id}>
+                <td>
+                  <p className='m-0'>{item.productName}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.description}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.picture}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{item.format}</p>
+                </td>
+                <td>
+                  <button className="btn btn-danger action-button" onClick={() => deleteProduct(item._id) }>
+                    <i className="bi bi-trash">Eliminar</i>
+                  </button>
+                  <button className="btn btn-success action-button">
+                    <i className="bi bi-pen">Editar</i>
+                  </button>
+                </td>
               </tr>
-            </thead>
-            <tbody>
-              {ProdData.map((item) => (
-                <tr key={item.id}>
-                  <td>
-                    <p>{item.title}</p>
-                  </td>
-                  <td>
-                    <p>{item.description}</p>
-                  </td>
-                  <td>
-                    <p>{item.image}</p>
-                  </td>
-                  <td>
-                    <p>{item.format}</p>
-                  </td>
-                  <td>
-                    <button className="btn btn-danger action-button">
-                      <i className="bi bi-trash">Eliminar</i>
-                    </button>
-                    <button className="btn btn-success action-button">
-                      <Link className='text-decoration-none text-white' to={`/detailabout/${item.id}`}>
-                        <i className="bi bi-pen">Editar</i>
-                      </Link>
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
         <AdmBut></AdmBut>
       </div>
     </div>
