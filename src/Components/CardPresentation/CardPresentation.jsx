@@ -4,11 +4,11 @@ const CardPresentation = ({ person }) => {
   return (
     <div className="cardPresentation d-flex flex-row col-11 col-sm-5 col-lg-3">
       <div className='d-flex flex-column col-6 align-items-center justify-content-center' >
-        <img src={person.picture} className="card-img-top cardPresentation-image " alt="avatar"></img>
+        <img src={person.picture} className="cardPresentation-image " alt="avatar"></img>
       </div>
       <div className="card-body d-flex flex-column justify-content-center align-items-center col-6">
         <div className='contText'>
-          <h2 className="card-title cardPresentation-title text-center mt-2">{ person.name } </h2>
+          <h2 className="cardPresentation-title text-center mt-2">{ person.name } </h2>
           <p className="card-text cardPresentation-description px-2">{person.description} </p>
         </div>
         <div className="cardPresentation-icons">

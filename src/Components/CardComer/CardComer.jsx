@@ -8,7 +8,7 @@ const CardComer = ({ product }) => {
       </div>
       <div className='contText'>
         <h3 className='CardComerTitle px-1'>{product.productName}</h3>
-        <p className='CardComerDesc px-2'>{product.format}</p>
+        <p className='CardComerDesc px-3 pt-2'>{product.format}</p>
       </div>
     </div>
   )
