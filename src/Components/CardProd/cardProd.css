@@ -2,6 +2,7 @@
   background-color: white !important;
   border-radius: 30px;
   transition: box-shadow 0.3s ease-in-out;
+  min-height: 200px;
 }
 .cardProd:hover{
   box-shadow: 0 16px 32px rgba(0, 128, 0, 0.5), 0 16px 32px rgba(0, 128, 0, 0.5);
@@ -9,6 +10,8 @@
 .imgProd{
   width: 90%;
   border-radius: 20px;
+  min-height: 200px;
+  max-height: 200px;
 }
 .cardProd:hover .imgProd{
   transition: transform .2s;
