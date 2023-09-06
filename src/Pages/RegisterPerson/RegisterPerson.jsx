@@ -3,28 +3,64 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import './registerPerson.css'
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 
 const RegisterPerson = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
   const onSubmit = async (data) => {
-    try {
-      const response = await axios.post('http://localhost:8003/persons', data)
-      if (response.status === 201) {
-        toast.success(response.data.message)
-      } else {
-        toast.error(response.data)
+    if (name === null) {
+      try {
+        const response = await axios.post('http://localhost:8003/persons', data)
+        if (response.status === 201) {
+          toast.success(response.data.message)
+        } else {
+          toast.error(response.data)
+        }
+      } catch (error) {
+        console.error('Error al crear persona', error)
+        toast.error(error.response.data.message)
       }
-    } catch (error) {
-      console.error('Error al crear persona', error)
-      toast.error(error.response.data.message)
+      reset()
+    } else {
+      try {
+        const response = await axios.put(`http://localhost:8003/persons/${id}`, data)
+        if (response.status === 201) {
+          toast.success(response.data.message)
+          clearStorage()
+          window.location.href = '/adminabout'
+        } else {
+          toast.error(response.data)
+        }
+      } catch (error) {
+        console.error('Error al editar persona', error)
+        toast.error(error.response.data.message)
+      }
     }
-    reset()
+  }
+  const id = localStorage.getItem('key')
+  const name = localStorage.getItem('name')
+  const description = localStorage.getItem('description')
+  const picture = localStorage.getItem('picture')
+  const insta = localStorage.getItem('insta')
+  const tiktok = localStorage.getItem('tiktok')
+  const gmail = localStorage.getItem('gmail')
+  useEffect(() => {
+    setValue('name', name)
+    setValue('description', description)
+    setValue('picture', picture)
+    setValue('insta', insta)
+    setValue('tiktok', tiktok)
+    setValue('gmail', gmail)
+  }, [])
+
+  const clearStorage = () => {
+    localStorage.clear()
   }
 
   return (
     <div className="background-black d-flex flex-column">
       <div className="form-container p-3">
-        <h3 className="text-center">CREAR PERFIL PERSONA</h3>
+        <h3 className="text-center">{name === null ? 'CREAR PERFIL PERSONA' : `EDITAR PERFIL ${name}`}</h3>
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label className="form-label">Nombre</label>
@@ -117,11 +153,11 @@ const RegisterPerson = () => {
             })} />
             {errors.gmail && <div className="invalid-feedback">{errors.gmail.message}</div>}
           </div>
-          <button type="submit" className="btn btn-primary">Crear Persona</button>
+          <button type="submit" className="btn btn-primary">{name === null ? 'CREAR PERSONA' : 'EDITAR PERSONA'}</button>
         </form>
       </div>
       <div className='d-flex flex-row'>
-        <Link className='text-decoration-none text-white mt-4' to={'/adminabout'}>
+        <Link className='text-decoration-none text-white mt-4' to={'/adminabout'} onClick={clearStorage}>
           <button className="btn btn-primary action-button mx-2">
             ATRAS
           </button>
