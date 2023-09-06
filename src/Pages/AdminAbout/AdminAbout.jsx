@@ -45,7 +45,6 @@ const AdminAbout = () => {
     }
   }
   const deleteProduct = async (id) => {
-    console.log('entro')
     try {
       const response = await axios.delete(`http://localhost:8003/products/${id}`)
       if (response.status === 200) {
@@ -57,6 +56,22 @@ const AdminAbout = () => {
     } catch (error) {
       console.error('Error al intentar eliminar el producto:', error)
     }
+  }
+  const editPerson = (person) => {
+    localStorage.setItem('key', person._id)
+    localStorage.setItem('name', person.name)
+    localStorage.setItem('description', person.description)
+    localStorage.setItem('picture', person.picture)
+    localStorage.setItem('insta', person.insta)
+    localStorage.setItem('tiktok', person.tiktok)
+    localStorage.setItem('gmail', person.gmail)
+  }
+  const editProduct = (product) => {
+    localStorage.setItem('key', product._id)
+    localStorage.setItem('name', product.productName)
+    localStorage.setItem('description', product.description)
+    localStorage.setItem('picture', product.picture)
+    localStorage.setItem('format', product.format)
   }
 
   return (
@@ -83,33 +98,35 @@ const AdminAbout = () => {
             </tr>
           </thead>
           <tbody>
-            {personsData?.map((item) => (
-              <tr key={item._id}>
+            {personsData?.map((person) => (
+              <tr key={person._id}>
                 <td>
-                  <p className='m-0'>{item.name}</p>
+                  <p className='m-0'>{person.name}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.description}</p>
+                  <p className='m-0'>{person.description}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.picture}</p>
+                  <p className='m-0'>{person.picture}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.insta}</p>
+                  <p className='m-0'>{person.insta}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.tiktok}</p>
+                  <p className='m-0'>{person.tiktok}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.gmail}</p>
+                  <p className='m-0'>{person.gmail}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button" onClick={() => deletePerson(item._id) }>
+                  <button className="btn btn-danger action-button" onClick={() => deletePerson(person._id) }>
                     <i className="bi bi-trash">Eliminar</i>
                   </button>
-                  <button className="btn btn-success action-button">
-                    <i className="bi bi-pen">Editar</i>
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/registerperson'} onClick={() => editPerson(person)}>
+                    <button className="btn btn-success action-button">
+                      <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -135,27 +152,29 @@ const AdminAbout = () => {
             </tr>
           </thead>
           <tbody>
-            {productsData?.map((item) => (
-              <tr key={item._id}>
+            {productsData?.map((product) => (
+              <tr key={product._id}>
                 <td>
-                  <p className='m-0'>{item.productName}</p>
+                  <p className='m-0'>{product.productName}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.description}</p>
+                  <p className='m-0'>{product.description}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.picture}</p>
+                  <p className='m-0'>{product.picture}</p>
                 </td>
                 <td>
-                  <p className='m-0'>{item.format}</p>
+                  <p className='m-0'>{product.format}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button" onClick={() => deleteProduct(item._id) }>
+                  <button className="btn btn-danger action-button" onClick={() => deleteProduct(product._id) }>
                     <i className="bi bi-trash">Eliminar</i>
                   </button>
-                  <button className="btn btn-success action-button">
-                    <i className="bi bi-pen">Editar</i>
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/registerproduct'} onClick={() => editProduct(product)}>
+                    <button className="btn btn-success action-button">
+                      <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
