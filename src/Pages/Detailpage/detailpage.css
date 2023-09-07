@@ -3,12 +3,10 @@
   height: 535px !important;
   border-radius: 15px;
 }
-
 .conten{
   max-width: 100% !important;
   overflow: hidden !important;
 }
-
 .fullscreen-image-overlay {
   position: fixed;
   top: 0;
@@ -21,7 +19,6 @@
   justify-content: center;
   z-index: 9999;
 }
-
 .scroll-to-reels-button{
   position: fixed;
   bottom: 20px;
@@ -40,33 +37,28 @@
   right: 20px;
   z-index: 9998;
 }
-
 .SubDetail{
   font-size: 40px;
 }
-
 .imgDetail{
   transition: box-shadow 0.3s ease-in-out;
+  /* max-height: 200px; */
 }
 .imgDetail:hover{
   cursor: pointer;
   box-shadow: 0 16px 32px rgba(0, 128, 0, 0.5), 0 16px 32px rgba(0, 128, 0, 0.5);
 }
-
 .fullscreen-image {
   max-width: 90% !important;
   max-height: 90% !important;
 }
-
 .titleDetail{
   font-size: 70px;
 }
-
 .Efectd1 {
   transition: transform 1s ease-in-out;
   transform: translateY(-110%);
 }
-
 .Efectd1.EfectVisibled1 {
   transform: translateY(0);
 }
@@ -74,7 +66,6 @@
   transition: transform 1s ease-in-out;
   transform: translateX(-110%);
 }
-
 .Efectd2.EfectVisibled2 {
   transform: translateX(0);
 }
@@ -82,11 +73,9 @@
   transition: transform 1s ease-in-out;
   transform: translateX(110%);
 }
-
 .Efectd3.EfectVisibled3 {
   transform: translateX(0);
 }
-
 @media (max-width: 768px) {
   .titleDetail{
     font-size: 40px;
