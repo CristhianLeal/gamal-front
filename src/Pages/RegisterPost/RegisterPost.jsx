@@ -3,13 +3,18 @@ import { toast } from 'react-toastify'
 import axios from 'axios'
 import './registerPost.css'
 import { Link } from 'react-router-dom'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 const RegisterPost = () => {
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset, setValue, getValues } = useForm()
+  const [fotoS, setFotoS] = useState([])
   const onSubmit = async (data) => {
     if (name === null) {
       try {
+        console.log(data)
+        console.log(data.foto)
+        console.log(fotoS)
+        data.foto = [...fotoS, data.foto]
         console.log(data)
         const response = await axios.post('http://localhost:8003/posts', data)
         if (response.status === 201) {
@@ -46,10 +51,23 @@ const RegisterPost = () => {
     setValue('name', name)
     setValue('description', description)
     setValue('picture', picture)
+    setValue('foto', fotoS)
   }, [])
+  useEffect(() => {
+    setValue('foto', '')
+  }, [fotoS])
 
   const clearStorage = () => {
     localStorage.clear()
+  }
+  const addFoto = () => {
+    const newFoto = getValues('foto')
+    if (newFoto) {
+      setFotoS((prevFotoS) => [...prevFotoS, newFoto])
+      setValue('foto', '')
+      console.log(newFoto)
+      console.log(fotoS)
+    }
   }
 
   return (
@@ -81,7 +99,7 @@ const RegisterPost = () => {
               {...register('description', {
                 required: 'description is required',
                 minLength: {
-                  value: 10,
+                  value: 3,
                   message: 'description must be at least 10 characters long'
                 }
               })}
@@ -97,7 +115,7 @@ const RegisterPost = () => {
             {...register('picture', {
               required: 'picture is required',
               minLength: {
-                value: 10,
+                value: 3,
                 message: 'picture must be at least 10 characters long'
               }
             })} />
@@ -112,11 +130,12 @@ const RegisterPost = () => {
             {...register('foto', {
               required: 'foto is required',
               minLength: {
-                value: 10,
+                value: 3,
                 message: 'foto must be at least 10 characters long'
               }
             })} />
             {errors.foto && <div className="invalid-feedback">{errors.foto.message}</div>}
+            <button type="button" onClick={addFoto}>Add</button>
           </div>
           <div className="mb-3">
             <label className="form-label">Video</label>
@@ -127,7 +146,7 @@ const RegisterPost = () => {
             {...register('video', {
               required: 'video is required',
               minLength: {
-                value: 10,
+                value: 3,
                 message: 'video must be at least 10 characters long'
               }
             })} />
@@ -142,7 +161,7 @@ const RegisterPost = () => {
             {...register('reel', {
               required: 'reel is required',
               minLength: {
-                value: 10,
+                value: 3,
                 message: 'reel must be at least 10 characters long'
               }
             })} />
