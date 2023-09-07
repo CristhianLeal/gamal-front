@@ -1,20 +1,21 @@
-import React from 'react';
-import './card.css';
-import imgcard from '../../assets/imgcard.jpg'
-import { Link } from 'react-router-dom';
+import './card.css'
+import { Link } from 'react-router-dom'
 
-const Card = () => {
+const Card = ({ post }) => {
+  const savePostId = () => {
+    localStorage.setItem('postId', post._id)
+  }
   return (
     <div className="card border-0">
-      <Link className=' text-decoration-none' to="/detailpage">
-        <img src={imgcard} className="card-img-top img-fluid border-0" alt="Imagen" />
+      <Link className=' text-decoration-none' to="/detailpage" onClick={savePostId}>
+        <img src={post.picture} className="card-img-top img-fluid border-0" alt="Imagen" />
         <div className="card-body">
-          <h5 className="card-title text-white text-center">Título</h5>
-          <p className="card-text text-white text-center">Descripción</p>
+          <h5 className="card-title text-white text-center">{post.name}</h5>
+          <p className="card-text text-white text-center">{post.description}</p>
         </div>
       </Link>
     </div>
-  );
+  )
 }
 
-export default Card;
+export default Card
