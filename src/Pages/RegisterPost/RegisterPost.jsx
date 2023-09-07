@@ -8,13 +8,26 @@ import { useEffect, useState } from 'react'
 const RegisterPost = () => {
   const { register, handleSubmit, formState: { errors }, reset, setValue, getValues } = useForm()
   const [fotoS, setFotoS] = useState([])
+  const [videoS, setVideoS] = useState([])
+  const [reelS, setReelS] = useState([])
   const onSubmit = async (data) => {
     if (name === null) {
       try {
-        console.log(data)
-        console.log(data.foto)
-        console.log(fotoS)
-        data.foto = [...fotoS, data.foto]
+        if (data.foto !== '') {
+          data.foto = [...fotoS, data.foto]
+        } else {
+          data.foto = fotoS
+        }
+        if (data.video !== '') {
+          data.video = [...videoS, data.video]
+        } else {
+          data.video = videoS
+        }
+        if (data.reel !== '') {
+          data.reel = [...reelS, data.reel]
+        } else {
+          data.reel = reelS
+        }
         console.log(data)
         const response = await axios.post('http://localhost:8003/posts', data)
         if (response.status === 201) {
@@ -56,22 +69,36 @@ const RegisterPost = () => {
   useEffect(() => {
     setValue('foto', '')
   }, [fotoS])
+  useEffect(() => {
+    setValue('video', '')
+  }, [videoS])
+  useEffect(() => {
+    setValue('reel', '')
+  }, [reelS])
 
   const clearStorage = () => {
     localStorage.clear()
   }
   const addFoto = () => {
     const newFoto = getValues('foto')
+    const newVideo = getValues('video')
+    const newReel = getValues('reel')
     if (newFoto) {
       setFotoS((prevFotoS) => [...prevFotoS, newFoto])
       setValue('foto', '')
-      console.log(newFoto)
-      console.log(fotoS)
+    }
+    if (newVideo) {
+      setVideoS((prevVideoS) => [...prevVideoS, newVideo])
+      setValue('video', '')
+    }
+    if (newReel) {
+      setReelS((prevReelS) => [...prevReelS, newReel])
+      setValue('reel', '')
     }
   }
 
   return (
-    <div className="background-black d-flex flex-column">
+    <div className="background-black d-flex flex-column mt-5">
       <div className="form-container p-3">
         <h3 className="text-center">{name === null ? 'CREAR POST' : `EDITAR POST ${name}`}</h3>
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
@@ -128,14 +155,13 @@ const RegisterPost = () => {
             className={`form-control ${errors.foto ? 'is-invalid' : ''}`}
             placeholder="www.foto.com"
             {...register('foto', {
-              required: 'foto is required',
               minLength: {
                 value: 3,
                 message: 'foto must be at least 10 characters long'
               }
             })} />
             {errors.foto && <div className="invalid-feedback">{errors.foto.message}</div>}
-            <button type="button" onClick={addFoto}>Add</button>
+            <button type="button" onClick={addFoto}>Add Foto</button>
           </div>
           <div className="mb-3">
             <label className="form-label">Video</label>
@@ -144,13 +170,13 @@ const RegisterPost = () => {
             className={`form-control ${errors.video ? 'is-invalid' : ''}`}
             placeholder="www.video.com"
             {...register('video', {
-              required: 'video is required',
               minLength: {
                 value: 3,
                 message: 'video must be at least 10 characters long'
               }
             })} />
             {errors.video && <div className="invalid-feedback">{errors.video.message}</div>}
+            <button type="button" onClick={addFoto}>Add Video</button>
           </div>
           <div className="mb-3">
             <label className="form-label">Reel</label>
@@ -159,13 +185,13 @@ const RegisterPost = () => {
             className={`form-control ${errors.reel ? 'is-invalid' : ''}`}
             placeholder="www.reel.com"
             {...register('reel', {
-              required: 'reel is required',
               minLength: {
                 value: 3,
                 message: 'reel must be at least 10 characters long'
               }
             })} />
             {errors.reel && <div className="invalid-feedback">{errors.reel.message}</div>}
+            <button type="button" onClick={addFoto}>Add Reel</button>
           </div>
           <button type="submit" className="btn btn-primary">{name === null ? 'CREAR POST' : 'EDITAR POST'}</button>
         </form>
