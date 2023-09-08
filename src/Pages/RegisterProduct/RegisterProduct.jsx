@@ -53,7 +53,7 @@ const RegisterProduct = () => {
   }
   return (
     <div className="background-black d-flex flex-column">
-      <div className="form-container p-3">
+      <div className="form-container p-3 w-50">
         <h3 className="text-center">{name === null ? 'CREAR PRODUCTO' : `EDITAR PRODUCTO ${name}`}</h3>
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
