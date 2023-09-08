@@ -1,15 +1,23 @@
-import React from 'react';
-import './adminPosts.css';
+import './adminPosts.css'
 import AdmBut from '../../Components/AdmBut/AdmBut'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const AdminPosts = () => {
-  const PostData = [
-    { id: 1, title: 'Post1', description: 'esto es un post1', video:'link', imagen:'upload', reel: 'link'},
-    { id: 2, title: 'Post2', description: 'esto es un post2', video:'link', imagen:'upload', reel: 'link'},
-    { id: 3, title: 'Post3', description: 'esto es un post3', video:'link', imagen:'upload', reel: 'link'},
-  ];
-
+  const [postsData, setPostsData] = useState([])
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/posts')
+        setPostsData(response.data.posts)
+        console.log(response.data.posts)
+      } catch (error) {
+        console.error('Error al obtener los datos de los posts:', error)
+      }
+    }
+    fetchPosts()
+  }, [])
 
   return (
     <div className="admin-container mt-5">
@@ -24,24 +32,24 @@ const AdminPosts = () => {
                   Acciones
                 <button className="btn btn-primary action-button mx-2">
                 <Link className='text-decoration-none text-white' to='/registerpost'>
-                  <i className="bi bi-arrow-up-circle">Subir post</i> 
+                  <i className="bi bi-arrow-up-circle">Subir post</i>
                 </Link>
                 </button>
               </th>
             </tr>
           </thead>
           <tbody>
-            {PostData.map((item) => (
-              <tr key={item.id}>
+            {postsData.map((item) => (
+              <tr key={item._id}>
                 <td>
-                  <p>{item.title}</p>
+                  <p>{item.name}</p>
                 </td>
                 <td>
                   <p>{item.description}</p>
                 </td>
                 <td>
                   <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash">Eliminar</i> 
+                    <i className="bi bi-trash">Eliminar</i>
                   </button>
                   <button className="btn btn-success action-button">
                     <Link className='text-decoration-none text-white' to={`/detailpost/${item.id}`}>
@@ -56,7 +64,7 @@ const AdminPosts = () => {
         <AdmBut></AdmBut>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AdminPosts;
+export default AdminPosts
