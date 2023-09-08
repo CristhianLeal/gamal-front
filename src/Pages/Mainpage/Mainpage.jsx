@@ -31,7 +31,6 @@ const Mainpage = () => {
       try {
         const response = await axios.get('http://localhost:8003/posts')
         setPostData(response.data.posts)
-        console.log(response.data.posts)
       } catch (error) {
         console.error('Error al obtener los posts:', error)
       }

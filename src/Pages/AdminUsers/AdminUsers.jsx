@@ -22,7 +22,6 @@ const AdminUsers = () => {
   const deleteUser = async (id) => {
     try {
       const response = await axios.delete(`http://localhost:8003/users/${id}`)
-      console.log(response.data)
       if (response.status === 200) {
         toast.success(response.data.message)
       } else {

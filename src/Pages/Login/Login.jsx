@@ -42,12 +42,11 @@ const Login = () => {
           sessionStorage.setItem('user', data.email)
           reset()
           window.location.href = '/admin'
-          console.log(response.data.token)
         } else {
           toast.error(response.data.message)
         }
       } catch (error) {
-        console.log(error)
+        console.error(error)
       }
     } else {
       toast.error('Código incorrecto')

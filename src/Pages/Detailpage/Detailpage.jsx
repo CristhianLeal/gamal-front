@@ -75,7 +75,6 @@ const DetailPage = () => {
       try {
         const response = await axios.get(`http://localhost:8003/posts/${postId}`)
         setPost(response.data.post)
-        console.log(response.data.post)
       } catch (error) {
         console.error('Error al obtener los posts:', error)
       }
