@@ -4,6 +4,7 @@ import axios from 'axios'
 import './registerPost.css'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { TableForm } from '../../Components/index'
 
 const RegisterPost = () => {
   const { register, handleSubmit, formState: { errors }, reset, setValue, getValues } = useForm()
@@ -28,10 +29,11 @@ const RegisterPost = () => {
         } else {
           data.reel = reelS
         }
-        console.log(data)
         const response = await axios.post('http://localhost:8003/posts', data)
         if (response.status === 201) {
           toast.success(response.data.message)
+          reset()
+          window.location.href = '/adminposts'
         } else {
           toast.error(response.data)
         }
@@ -39,14 +41,13 @@ const RegisterPost = () => {
         console.error('Error al crear post', error)
         toast.error(error.response.data.message)
       }
-      // reset()
     } else {
       try {
         const response = await axios.put(`http://localhost:8003/posts/${id}`, data)
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()
-          window.location.href = '/adminabout'
+          window.location.href = '/adminposts'
         } else {
           toast.error(response.data)
         }
@@ -96,10 +97,18 @@ const RegisterPost = () => {
       setValue('reel', '')
     }
   }
-
+  const deleteLinkFoto = (newData) => {
+    setFotoS(newData)
+  }
+  const deleteLinkVideo = (newData) => {
+    setVideoS(newData)
+  }
+  const deleteLinkReel = (newData) => {
+    setReelS(newData)
+  }
   return (
     <div className="background-black d-flex flex-column mt-5">
-      <div className="form-container p-3">
+      <div className="form-container p-3 w-75">
         <h3 className="text-center">{name === null ? 'CREAR POST' : `EDITAR POST ${name}`}</h3>
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
@@ -161,7 +170,8 @@ const RegisterPost = () => {
               }
             })} />
             {errors.foto && <div className="invalid-feedback">{errors.foto.message}</div>}
-            <button type="button" onClick={addFoto}>Add Foto</button>
+            <button className='mt-2' type="button" onClick={addFoto}>Add Foto</button>
+            <TableForm data={fotoS} onDeleteLink={deleteLinkFoto}/>
           </div>
           <div className="mb-3">
             <label className="form-label">Video</label>
@@ -176,7 +186,8 @@ const RegisterPost = () => {
               }
             })} />
             {errors.video && <div className="invalid-feedback">{errors.video.message}</div>}
-            <button type="button" onClick={addFoto}>Add Video</button>
+            <button className='mt-2' type="button" onClick={addFoto}>Add Video</button>
+            <TableForm data={videoS} onDeleteLink={deleteLinkVideo}/>
           </div>
           <div className="mb-3">
             <label className="form-label">Reel</label>
@@ -191,7 +202,8 @@ const RegisterPost = () => {
               }
             })} />
             {errors.reel && <div className="invalid-feedback">{errors.reel.message}</div>}
-            <button type="button" onClick={addFoto}>Add Reel</button>
+            <button className='mt-2' type="button" onClick={addFoto}>Add Reel</button>
+            <TableForm data={reelS} onDeleteLink={deleteLinkReel}/>
           </div>
           <button type="submit" className="btn btn-primary">{name === null ? 'CREAR POST' : 'EDITAR POST'}</button>
         </form>
