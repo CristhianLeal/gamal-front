@@ -11,24 +11,30 @@ const RegisterPost = () => {
   const [fotoS, setFotoS] = useState([])
   const [videoS, setVideoS] = useState([])
   const [reelS, setReelS] = useState([])
+  const [data, setData] = useState([])
   const onSubmit = async (data) => {
-    if (name === null) {
+    console.log(data)
+    const check = () => {
+      console.log('entro a check')
+      if (data.foto !== '') {
+        data.foto = [...fotoS, data.foto]
+      } else {
+        data.foto = fotoS
+      }
+      if (data.video !== '') {
+        data.video = [...videoS, data.video]
+      } else {
+        data.video = videoS
+      }
+      if (data.reel !== '') {
+        data.reel = [...reelS, data.reel]
+      } else {
+        data.reel = reelS
+      }
+    }
+    if (id === null) {
       try {
-        if (data.foto !== '') {
-          data.foto = [...fotoS, data.foto]
-        } else {
-          data.foto = fotoS
-        }
-        if (data.video !== '') {
-          data.video = [...videoS, data.video]
-        } else {
-          data.video = videoS
-        }
-        if (data.reel !== '') {
-          data.reel = [...reelS, data.reel]
-        } else {
-          data.reel = reelS
-        }
+        check()
         const response = await axios.post('http://localhost:8003/posts', data)
         if (response.status === 201) {
           toast.success(response.data.message)
@@ -42,6 +48,7 @@ const RegisterPost = () => {
         toast.error(error.response.data.message)
       }
     } else {
+      check()
       try {
         const response = await axios.put(`http://localhost:8003/posts/${id}`, data)
         if (response.status === 201) {
@@ -58,15 +65,27 @@ const RegisterPost = () => {
     }
   }
   const id = localStorage.getItem('key')
-  const name = localStorage.getItem('name')
-  const description = localStorage.getItem('description')
-  const picture = localStorage.getItem('picture')
   useEffect(() => {
-    setValue('name', name)
-    setValue('description', description)
-    setValue('picture', picture)
-    setValue('foto', fotoS)
+    const fetchPost = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8003/posts/${id}`)
+        setData(response.data.post)
+      } catch (error) {
+        console.error('Error al obtener los datos del post:', error)
+      }
+    }
+    if (id !== null) {
+      fetchPost()
+    }
   }, [])
+  useEffect(() => {
+    setValue('name', data.name)
+    setValue('description', data.description)
+    setValue('picture', data.picture)
+    setFotoS(data.fotos)
+    setVideoS(data.videos)
+    setReelS(data.reels)
+  }, [data])
   useEffect(() => {
     setValue('foto', '')
   }, [fotoS])
@@ -85,15 +104,33 @@ const RegisterPost = () => {
     const newVideo = getValues('video')
     const newReel = getValues('reel')
     if (newFoto) {
-      setFotoS((prevFotoS) => [...prevFotoS, newFoto])
+      setFotoS((prevFotoS) => {
+        if (Array.isArray(prevFotoS)) {
+          return [...prevFotoS, newFoto]
+        } else {
+          return [newFoto]
+        }
+      })
       setValue('foto', '')
     }
     if (newVideo) {
-      setVideoS((prevVideoS) => [...prevVideoS, newVideo])
+      setVideoS((prevVideoS) => {
+        if (Array.isArray(prevVideoS)) {
+          return [...prevVideoS, newVideo]
+        } else {
+          return [newVideo]
+        }
+      })
       setValue('video', '')
     }
     if (newReel) {
-      setReelS((prevReelS) => [...prevReelS, newReel])
+      setReelS((prevReelS) => {
+        if (Array.isArray(prevReelS)) {
+          return [...prevReelS, newReel]
+        } else {
+          return [newReel]
+        }
+      })
       setValue('reel', '')
     }
   }
@@ -109,7 +146,7 @@ const RegisterPost = () => {
   return (
     <div className="background-black d-flex flex-column mt-5">
       <div className="form-container p-3 w-75">
-        <h3 className="text-center">{name === null ? 'CREAR POST' : `EDITAR POST ${name}`}</h3>
+        <h3 className="text-center">{data.name === undefined ? 'CREAR POST' : `EDITAR POST ${data.name}`}</h3>
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label className="form-label">Nombre</label>
@@ -205,11 +242,11 @@ const RegisterPost = () => {
             <button className='mt-2' type="button" onClick={addFoto}>Add Reel</button>
             <TableForm data={reelS} onDeleteLink={deleteLinkReel}/>
           </div>
-          <button type="submit" className="btn btn-primary">{name === null ? 'CREAR POST' : 'EDITAR POST'}</button>
+          <button type="submit" className="btn btn-primary">{data.name === undefined ? 'CREAR POST' : 'EDITAR POST'}</button>
         </form>
       </div>
       <div className='d-flex flex-row'>
-        <Link className='text-decoration-none text-white mt-4' to={'/adminabout'} onClick={clearStorage}>
+        <Link className='text-decoration-none text-white mt-4' to={'/adminposts'} onClick={clearStorage}>
           <button className="btn btn-primary action-button mx-2">
             ATRAS
           </button>
