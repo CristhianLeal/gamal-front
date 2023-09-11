@@ -3,22 +3,38 @@ import AdmBut from '../../Components/AdmBut/AdmBut'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const AdminPosts = () => {
   const [postsData, setPostsData] = useState([])
+  const [deleted, setDeleted] = useState(false)
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:8003/posts')
         setPostsData(response.data.posts)
-        console.log(response.data.posts)
       } catch (error) {
         console.error('Error al obtener los datos de los posts:', error)
       }
     }
     fetchPosts()
-  }, [])
-
+  }, [deleted])
+  const deletePost = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:8003/posts/${id}`)
+      if (response.status === 200) {
+        toast.success(response.data.message)
+        setDeleted(!deleted)
+      } else {
+        toast.error(response.data)
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos de los usuarios:', error)
+    }
+  }
+  const editPost = async (post) => {
+    localStorage.setItem('key', post._id)
+  }
   return (
     <div className="admin-container mt-5">
       <div className="container">
@@ -31,31 +47,31 @@ const AdminPosts = () => {
               <th>
                   Acciones
                 <button className="btn btn-primary action-button mx-2">
-                <Link className='text-decoration-none text-white' to='/registerpost'>
-                  <i className="bi bi-arrow-up-circle">Subir post</i>
-                </Link>
+                  <Link className='text-decoration-none text-white' to='/registerpost'>
+                    <i className="bi bi-arrow-up-circle">Subir post</i>
+                  </Link>
                 </button>
               </th>
             </tr>
           </thead>
           <tbody>
-            {postsData.map((item) => (
-              <tr key={item._id}>
+            {postsData.map((post) => (
+              <tr key={post._id}>
                 <td>
-                  <p>{item.name}</p>
+                  <p>{post.name}</p>
                 </td>
                 <td>
-                  <p>{item.description}</p>
+                  <p>{post.description}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button">
+                  <button className="btn btn-danger action-button" onClick={() => deletePost(post._id) }>
                     <i className="bi bi-trash">Eliminar</i>
                   </button>
-                  <button className="btn btn-success action-button">
-                    <Link className='text-decoration-none text-white' to={`/detailpost/${item.id}`}>
-                      <i className="bi bi-pen">Editar</i>
-                    </Link>
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/registerpost'}>
+                    <button className="btn btn-success action-button" onClick={() => editPost(post) }>
+                        <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
