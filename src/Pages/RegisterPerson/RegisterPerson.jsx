@@ -41,14 +41,20 @@ const RegisterPerson = () => {
   const name = localStorage.getItem('name')
   const description = localStorage.getItem('description')
   const picture = localStorage.getItem('picture')
-  const insta = localStorage.getItem('insta')
-  const tiktok = localStorage.getItem('tiktok')
-  const gmail = localStorage.getItem('gmail')
+  // const insta = localStorage.getItem('insta')
+  // const face = localStorage.getItem('face')
+  // const tiktok = localStorage.getItem('tiktok')
+  // const gmail = localStorage.getItem('gmail')
+  const insta = localStorage.getItem('insta') !== null ? localStorage.getItem('insta') : ''
+  const face = localStorage.getItem('face') !== null ? localStorage.getItem('face') : ''
+  const tiktok = localStorage.getItem('tiktok') !== null ? localStorage.getItem('tiktok') : ''
+  const gmail = localStorage.getItem('gmail') !== null ? localStorage.getItem('gmail') : ''
   useEffect(() => {
     setValue('name', name)
     setValue('description', description)
     setValue('picture', picture)
     setValue('insta', insta)
+    setValue('face', face)
     setValue('tiktok', tiktok)
     setValue('gmail', gmail)
   }, [])
@@ -115,7 +121,6 @@ const RegisterPerson = () => {
             className={`form-control ${errors.insta ? 'is-invalid' : ''}`}
             placeholder="www.insta.com"
             {...register('insta', {
-              required: 'insta is required',
               minLength: {
                 value: 10,
                 message: 'insta must be at least 10 characters long'
@@ -124,13 +129,26 @@ const RegisterPerson = () => {
             {errors.insta && <div className="invalid-feedback">{errors.insta.message}</div>}
           </div>
           <div className="mb-3">
+            <label className="form-label">Facebook</label>
+            <input
+            type="text"
+            className={`form-control ${errors.face ? 'is-invalid' : ''}`}
+            placeholder="www.facebook.com"
+            {...register('face', {
+              minLength: {
+                value: 10,
+                message: 'face must be at least 10 characters long'
+              }
+            })} />
+            {errors.face && <div className="invalid-feedback">{errors.face.message}</div>}
+          </div>
+          <div className="mb-3">
             <label className="form-label">Tiktok</label>
             <input
             type="text"
             className={`form-control ${errors.tiktok ? 'is-invalid' : ''}`}
             placeholder="www.tiktok.com"
             {...register('tiktok', {
-              required: 'tiktok is required',
               minLength: {
                 value: 10,
                 message: 'tiktok must be at least 10 characters long'
@@ -145,7 +163,6 @@ const RegisterPerson = () => {
             className={`form-control ${errors.gmail ? 'is-invalid' : ''}`}
             placeholder="email@gmail.com"
             {...register('gmail', {
-              required: 'gmail is required',
               minLength: {
                 value: 10,
                 message: 'gmail must be at least 10 characters long'

@@ -29,6 +29,7 @@ const AdminAbout = () => {
     }
     fetchPersons()
     fetchProducts()
+    localStorage.clear()
   }, [deleted])
 
   const deletePerson = async (id) => {
@@ -63,6 +64,7 @@ const AdminAbout = () => {
     localStorage.setItem('description', person.description)
     localStorage.setItem('picture', person.picture)
     localStorage.setItem('insta', person.insta)
+    localStorage.setItem('face', person.face)
     localStorage.setItem('tiktok', person.tiktok)
     localStorage.setItem('gmail', person.gmail)
   }
@@ -85,6 +87,7 @@ const AdminAbout = () => {
               <th>Descripción</th>
               <th>Imagen</th>
               <th>Instagram</th>
+              <th>Facebook</th>
               <th>Tiktok</th>
               <th>Gmail</th>
               <th>
@@ -111,6 +114,9 @@ const AdminAbout = () => {
                 </td>
                 <td>
                   <p className='m-0'>{person.insta}</p>
+                </td>
+                <td>
+                  <p className='m-0'>{person.face}</p>
                 </td>
                 <td>
                   <p className='m-0'>{person.tiktok}</p>
