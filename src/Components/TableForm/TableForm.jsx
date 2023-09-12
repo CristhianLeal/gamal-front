@@ -23,7 +23,11 @@ const TableForm = ({ data, onDeleteLink }) => {
         <tbody>
           {dataS?.map((item, index) => (
             <tr key={index}>
-              <td>{item}</td>
+              <td>
+                <a href={item} target='blank' className='text-decoration-none text-white'>
+                {item}
+                </a>
+              </td>
               <td>
                 <button type='button' className="btn btn-danger action-button" onClick={() => deleteLink(index)}>
                   <i className="bi bi-trash"></i>
