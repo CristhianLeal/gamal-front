@@ -18,6 +18,7 @@ const AdminPosts = () => {
       }
     }
     fetchPosts()
+    localStorage.clear()
   }, [deleted])
   const deletePost = async (id) => {
     try {

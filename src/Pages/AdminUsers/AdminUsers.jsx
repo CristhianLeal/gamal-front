@@ -17,6 +17,7 @@ const AdminUsers = () => {
       }
     }
     fetchUsers()
+    localStorage.clear()
   }, [])
 
   const deleteUser = async (id) => {
