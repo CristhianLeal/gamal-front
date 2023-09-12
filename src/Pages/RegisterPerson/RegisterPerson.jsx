@@ -41,10 +41,6 @@ const RegisterPerson = () => {
   const name = localStorage.getItem('name')
   const description = localStorage.getItem('description')
   const picture = localStorage.getItem('picture')
-  // const insta = localStorage.getItem('insta')
-  // const face = localStorage.getItem('face')
-  // const tiktok = localStorage.getItem('tiktok')
-  // const gmail = localStorage.getItem('gmail')
   const insta = localStorage.getItem('insta') !== null ? localStorage.getItem('insta') : ''
   const face = localStorage.getItem('face') !== null ? localStorage.getItem('face') : ''
   const tiktok = localStorage.getItem('tiktok') !== null ? localStorage.getItem('tiktok') : ''
