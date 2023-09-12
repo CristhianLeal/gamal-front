@@ -13,21 +13,26 @@ const CardPresentation = ({ person }) => {
         </div>
         <div className="cardPresentation-icons">
           <ul className='list-unstyled m-0 d-flex flex-row align-items-center justify-content-center px-0'>
-            <li>
+            {person.insta && <li>
               <a href={ person.insta } target="_blank" rel="noreferrer">
                 <i className="bi bi-instagram colorIco circle-iconp"></i>
               </a>
-            </li>
-            <li>
+            </li>}
+            {person.face && <li>
+              <a href={ person.face } target="_blank" rel="noreferrer">
+                <i className="bi bi-facebook colorIco circle-iconp"></i>
+              </a>
+            </li>}
+            {person.tiktok && <li>
               <a href={ person.tiktok } target="_blank" rel="noreferrer">
                 <i className="bi bi-tiktok colorIco circle-iconp"></i>
               </a>
-            </li>
-            <li>
+            </li>}
+            {person.gmail && <li>
               <a href={ person.gmail } target="_blank" rel="noreferrer">
                 <i className="bi bi-envelope-at colorIco circle-iconp"></i>
               </a>
-            </li>
+            </li>}
           </ul>
         </div>
       </div>
