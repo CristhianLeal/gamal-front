@@ -42,7 +42,8 @@
 }
 .imgDetail{
   transition: box-shadow 0.3s ease-in-out;
-  /* max-height: 200px; */
+  max-height: 250px;
+  width: auto;
 }
 .imgDetail:hover{
   cursor: pointer;
