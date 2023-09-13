@@ -75,6 +75,7 @@ const DetailPage = () => {
       try {
         const response = await axios.get(`http://localhost:8003/posts/${postId}`)
         setPost(response.data.post)
+        handleScroll()
       } catch (error) {
         console.error('Error al obtener los posts:', error)
       }
@@ -92,7 +93,7 @@ const DetailPage = () => {
         <p className='text-white text-center mb-5 px-2'>{post.description}</p>
         <div id="picturesSection"></div>
       </div>
-      <div ref={ERef1} className={`Efectd2 ${contVisible[1] ? 'EfectVisibled2' : ''}`}>
+      {post.fotos && post.fotos.length > 0 && <div ref={ERef1} className={`Efectd2 ${contVisible[1] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Imagenes</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>
@@ -102,8 +103,8 @@ const DetailPage = () => {
             <div id="videosSection" ></div>
           </div>
         </div>
-      </div>
-      <div ref={ERef2} className={`Efectd3 ${contVisible[2] ? 'EfectVisibled3' : ''}`}>
+      </div>}
+      {post.videos && post.videos.length > 0 && <div ref={ERef2} className={`Efectd3 ${contVisible[2] ? 'EfectVisibled3' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Videos</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>
@@ -126,8 +127,8 @@ const DetailPage = () => {
             <div id="reelsSection" ></div>
           </div>
         </div>
-      </div>
-      <div ref={ERef3} className={`Efectd2 ${contVisible[3] ? 'EfectVisibled2' : ''}`}>
+      </div>}
+      {post.reels && post.reels.length > 0 && <div ref={ERef3} className={`Efectd2 ${contVisible[3] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Reels</h4>
           <div className='d-flex flex-wrap align-items-center justify-content-center gap-4'>
@@ -136,16 +137,16 @@ const DetailPage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div>}
       {showFullScreenImage && (
         <div className="fullscreen-image-overlay" onClick={toggleFullScreenImage}>
           <img src={photo} className="fullscreen-image" alt="Imagen" />
         </div>
       )}
       <script async src="//www.instagram.com/embed.js"></script>
-      <ScrollToPicturesButton className='scroll-to-pictures-button' />
-      <ScrollToVideosButton className='scroll-to-videos-button' />
-      <ScrollToReelsButton className='scroll-to-reels-button'/>
+      {post.fotos && post.fotos.length > 0 && <ScrollToPicturesButton className='scroll-to-pictures-button' />}
+      {post.videos && post.videos.length > 0 && <ScrollToVideosButton className='scroll-to-videos-button' />}
+      {post.reels && post.reels.length > 0 && <ScrollToReelsButton className='scroll-to-reels-button'/>}
     </div>
   )
 }
