@@ -5,13 +5,19 @@ import axios from 'axios'
 
 const AboutUs = () => {
   const [cardVisibilities, setCardVisibilities] = useState([])
-
+  const [personsData, setPersonsData] = useState([])
+  const [productsData, setProductsData] = useState([])
+  const [metrics, setMetrics] = useState([])
+  const [face, setFace] = useState(0)
+  const [insta, setInsta] = useState(0)
+  const [twitter, setTwitter] = useState(0)
+  const [youtube, setYoutube] = useState(0)
+  const [isVisible, setIsVisible] = useState(false)
   const ElementRef0 = useRef(null)
   const ElementRef1 = useRef(null)
   const ElementRef2 = useRef(null)
   const ElementRef3 = useRef(null)
   const ElementRef4 = useRef(null)
-
   const handleScroll = () => {
     const refs = [ElementRef0, ElementRef1, ElementRef2, ElementRef3, ElementRef4]
     const visibilities = refs.map((ref) => {
@@ -22,8 +28,12 @@ const AboutUs = () => {
       return false
     })
     setCardVisibilities(visibilities)
+    if (visibilities[4]) {
+      setIsVisible(true)
+    } else {
+      setIsVisible(false)
+    }
   }
-
   useEffect(() => {
     handleScroll()
     window.scrollTo(0, 0)
@@ -32,8 +42,6 @@ const AboutUs = () => {
       window.removeEventListener('scroll', handleScroll)
     }
   }, [])
-  const [personsData, setPersonsData] = useState([])
-  const [productsData, setProductsData] = useState([])
   useEffect(() => {
     const fetchPersons = async () => {
       try {
@@ -51,15 +59,56 @@ const AboutUs = () => {
         console.error('Error al obtener los datos de los productos:', error)
       }
     }
+    const fetchMetrics = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/metrics')
+        setMetrics(response.data.metrics[0])
+      } catch (error) {
+        console.error('Error al obtener los datos de las metricas:', error)
+      }
+    }
     fetchPersons()
     fetchProducts()
+    fetchMetrics()
   }, [])
-
+  useEffect(() => {
+    if (isVisible === true) {
+      let countFace = 0
+      let countInsta = 0
+      let countTwitter = 0
+      let countYoutube = 0
+      const intervalId = setInterval(() => {
+        if (countFace <= parseFloat(metrics.face)) {
+          countFace += 0.1
+          countFace = parseFloat(countFace.toFixed(2))
+          setFace(countFace)
+        }
+        if (countInsta <= parseFloat(metrics.insta)) {
+          countInsta += 0.1
+          countInsta = parseFloat(countInsta.toFixed(2))
+          setInsta(countInsta)
+        }
+        if (countTwitter <= parseFloat(metrics.twitter)) {
+          countTwitter += 0.1
+          countTwitter = parseFloat(countTwitter.toFixed(2))
+          setTwitter(countTwitter)
+        }
+        if (countYoutube <= parseFloat(metrics.youtube)) {
+          countYoutube += 0.1
+          countYoutube = parseFloat(countYoutube.toFixed(2))
+          setYoutube(countYoutube)
+        }
+      }, 50)
+      return () => {
+        clearInterval(intervalId)
+      }
+    }
+  }, [metrics, isVisible])
   return (
     <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUE HACEMOS?</h2>
-        <p className='text-white text-center px-3'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet illo culpa voluptate aut tenetur modi aperiam quidem corrupti a voluptatem nisi tempore deleniti facere quisquam cumque, doloribus harum in saepe?</p>
+        <p className='text-white text-center px-3 fs-4'>{metrics.description}</p>
       </div>
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
@@ -89,27 +138,36 @@ const AboutUs = () => {
         <h2 className='text-white text-center TitleH2'>METRICAS</h2>
         <div className='d-flex flex-column'>
           <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center'>
-            <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
+            {metrics.people && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center tam'>
               <i className="bi bi-people-fill IconMetric px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2'>People</p>
-            </div>
-            <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.people}</p>
+            </div>}
+            {metrics.man && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-gender-male IconMetric px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2'>MAN</p>
-            </div>
-            <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.man}% Hombres</p>
+            </div>}
+            {metrics.woman && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-gender-female IconMetric px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2'>WOMAN</p>
-            </div>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.woman}% Mujeres</p>
+            </div>}
           </div>
-          <div className='d-flex flex-column flex-md-row justify-content-center align-items-center mt-md-5 mt-3'>
-            <div className='d-flex flex-row justify-content-center align-items-center gap-2'>
+          <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center mt-md-5 mt-3'>
+            {metrics.face && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-facebook IconMetric2 px-2"></i>
-              <i className="bi bi-twitter IconMetric2 px-2"></i>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{face} M</p>
+            </div>}
+            {metrics.insta && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-instagram IconMetric2 px-2"></i>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{insta} M</p>
+            </div>}
+            {metrics.twitter && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
+              <i className="bi bi-twitter IconMetric2 px-2"></i>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{twitter} M</p>
+            </div>}
+            {metrics.youtube && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-youtube IconMetric2 px-2"></i>
-            </div>
-            <p className='text-white'>CLAROOOOO</p>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{youtube} M</p>
+            </div>}
           </div>
         </div>
       </div>
