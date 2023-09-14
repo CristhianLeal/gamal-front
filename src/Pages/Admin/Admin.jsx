@@ -1,18 +1,48 @@
-import React from 'react';
-import './admin.css';
+import './admin.css'
 import AdmBut from '../../Components/AdmBut/AdmBut'
+import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Admin = () => {
-  const videoData = [
-    { id: 1, content: 'video principal' },
-  ];
-
-  const imageData = [
-    { id: 1, content: 'imagen 1' },
-    { id: 2, content: 'imagen 2' },
-    { id: 3, content: 'imagen 3' },
-  ];
-
+  const [data, setData] = useState([])
+  const [deleted, setDeleted] = useState(false)
+  useEffect(() => {
+    const fetchHome = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/home')
+        console.log(response)
+        if (response.data !== '') {
+          console.log('entro')
+          setData(response.data.home[0])
+        } else {
+          setData(response.data)
+          console.log('no hay data')
+        }
+      } catch (error) {
+        console.error('Error al obtener los datos de las metricas:', error)
+      }
+    }
+    fetchHome()
+    localStorage.clear()
+  }, [deleted])
+  const editHome = async (data) => {
+    localStorage.setItem('key', data._id)
+  }
+  const deleteHome = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:8003/home/${id}`)
+      if (response.status === 200) {
+        toast.success(response.data.message)
+        setDeleted(!deleted)
+      } else {
+        toast.error(response.data)
+      }
+    } catch (error) {
+      console.error('Error al intentar eliminar la metrica:', error)
+    }
+  }
   return (
     <div className="admin-container mt-5">
       <div className="container">
@@ -21,48 +51,54 @@ const Admin = () => {
           <thead>
             <tr>
               <th>Contenido</th>
-              <th>Acciones</th>
+              <th className='d-flex flex-row'>
+                <p className='px-2 m-0'>
+                  Acciones
+                </p>
+                {data === ''
+                  ? <Link className='text-decoration-none text-white' to={'/registerhome'}>
+                    <button className="btn btn-primary action-button mx-2">
+                      <i className="bi bi-arrow-up-circle"> Subir Home </i>
+                    </button>
+                  </Link>
+                  : ''}
+                {data &&
+                  <button className="btn btn-danger action-button" onClick={() => deleteHome(data._id) }>
+                    <i className="bi bi-trash">Eliminar</i>
+                  </button>}
+              </th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <th>Video</th>
-              <th>
-                <button className="btn btn-primary action-button">
-                  <i className="bi bi-arrow-up-circle">Subir</i> 
-                </button>
-              </th>
             </tr>
-            {videoData.map((item) => (
-              <tr key={item.id}>
+              <tr>
                 <td>
-                  <p>{item.content}</p>
+                  <p>{data.video}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash">Eliminar</i> 
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/registerhome'}>
+                    <button className="btn btn-success action-button" onClick={() => editHome(data) }>
+                        <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
-            ))}
             <tr>
               <th>Imagenes</th>
-              <th>
-                <button className="btn btn-primary action-button">
-                  <i className="bi bi-arrow-up-circle">Subir</i> 
-                </button>
-              </th>
-              
             </tr>
-            {imageData.map((item) => (
-              <tr key={item.id}>
+            {data.fotos?.map((item) => (
+              <tr key={item}>
                 <td>
-                  <p>{item.content}</p>
+                  <p>{item}</p>
                 </td>
                 <td>
-                  <button className="btn btn-danger action-button">
-                    <i className="bi bi-trash">Eliminar</i> 
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/registerhome'}>
+                    <button className="btn btn-success action-button" onClick={() => editHome(data) }>
+                        <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
@@ -71,7 +107,7 @@ const Admin = () => {
         <AdmBut></AdmBut>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Admin;
+export default Admin
