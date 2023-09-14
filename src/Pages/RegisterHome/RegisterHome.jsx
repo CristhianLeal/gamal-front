@@ -71,6 +71,7 @@ const RegisterHome = () => {
     }
   }, [])
   useEffect(() => {
+    setValue('video', data.video)
     setFotoS(data.fotos)
   }, [data])
   useEffect(() => {
