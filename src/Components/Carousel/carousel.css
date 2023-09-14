@@ -1,6 +1,6 @@
 .carousel-image {
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
 }
 .carousel-image:last-child {
   margin-right: 0 !important;
@@ -12,12 +12,9 @@
   overflow: hidden;
 }
 
-/* @media (min-width: 768px) {
-  .carousel-container {
-    max-width: 60%;
-  }
+@media (min-width: 768px) {
   .carousel-image {
-    width: 100px;
-    height: 100px;
+    width: 60px;
+    height: 60px;
   }
-} */
+}
