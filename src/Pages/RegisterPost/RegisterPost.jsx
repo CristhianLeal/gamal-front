@@ -15,19 +15,30 @@ const RegisterPost = () => {
   const onSubmit = async (data) => {
     console.log(data)
     const check = () => {
-      console.log('entro a check')
       if (data.foto !== '') {
-        data.foto = [...fotoS, data.foto]
+        if (Array.isArray(fotoS)) {
+          data.foto = [...fotoS, data.foto]
+        } else {
+          data.foto = [data.foto]
+        }
       } else {
         data.foto = fotoS
       }
       if (data.video !== '') {
-        data.video = [...videoS, data.video]
+        if (Array.isArray(videoS)) {
+          data.video = [...videoS, data.video]
+        } else {
+          data.video = [data.video]
+        }
       } else {
         data.video = videoS
       }
       if (data.reel !== '') {
-        data.reel = [...reelS, data.reel]
+        if (Array.isArray(reelS)) {
+          data.reel = [...reelS, data.reel]
+        } else {
+          data.reel = [data.reel]
+        }
       } else {
         data.reel = reelS
       }
