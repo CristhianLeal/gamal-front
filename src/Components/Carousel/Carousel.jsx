@@ -1,30 +1,37 @@
-import React from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './carousel.css';
-import imagen1 from '../../assets/TN.png';
-import imagen2 from '../../assets/Artear.png';
-import imagen4 from '../../assets/Flow.png';
-import imagen5 from '../../assets/ford.png';
-import imagen6 from '../../assets/TN-02.png';
-import imagen7 from '../../assets/logoFlow.png';
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import './carousel.css'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const Carousel = () => {
-  const images = [
-    imagen1,
-    imagen2,
-    imagen4,
-    imagen5,
-    imagen6,
-    imagen7,
-  ];
+  const [data, setData] = useState([])
+  useEffect(() => {
+    const fetchHome = async () => {
+      try {
+        const response = await axios.get('http://localhost:8003/home')
+        console.log(response)
+        if (response.data !== '') {
+          console.log('entro')
+          setData(response.data.home[0])
+        } else {
+          setData(response.data)
+          console.log('no hay data')
+        }
+      } catch (error) {
+        console.error('Error al obtener los datos de las metricas:', error)
+      }
+    }
+    fetchHome()
+  }, [])
 
   const settings = {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    rows: 1,
+    swipeToSlide: true,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1000,
@@ -35,17 +42,23 @@ const Carousel = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 3,
+          slidesToShow: 4
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 5
         }
       }
     ]
-  };
+  }
 
   return (
     <div className='d-flex justify-content-center align-items-center'>
       <div className="carousel-container">
         <Slider {...settings}>
-          {images.map((image, index) => (
+          {data.fotos?.map((image, index) => (
             <div key={index} className="carousel-slide d-flex justify-content-center align-items-center">
               <img src={image} alt={`Imagen ${index + 1}`} className="carousel-image" />
             </div>
@@ -53,7 +66,7 @@ const Carousel = () => {
         </Slider>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Carousel;
+export default Carousel
