@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className='Foot'>
       <Carousel></Carousel>
-      <div className=' mt-5'>
+      <div className=' mt-4'>
         <ul className='list-unstyled m-0 d-flex flex-row align-items-center justify-content-center gap-3 gap-sm-4 gap-md-5'>
           <li>
             <a href="https://www.instagram.com/gamaldigital/" target="_blank" rel="noreferrer">
