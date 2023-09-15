@@ -6,9 +6,7 @@ import {
   AdminPosts,
   AdminUsers,
   Contact,
-  DetailAbout,
   Detailpage,
-  DetailPost,
   Home, Login,
   Mainpage,
   RegisterPost,
@@ -30,8 +28,6 @@ function App () {
   const isAdminuserspage = location.pathname.includes('/adminusers')
   const isMainpage = location.pathname.includes('/mainpage')
   const isDetailpage = location.pathname.includes('/detailpage')
-  const isDetailPost = location.pathname.includes('/detailpost')
-  const isDetailAbout = location.pathname.includes('/detailabout')
   const isregisterpost = location.pathname.includes('/registerpost')
   const isregisterperson = location.pathname.includes('/registerperson')
   const isregisterproduct = location.pathname.includes('/registerproduct')
@@ -41,7 +37,7 @@ function App () {
   const isAboutUs = location.pathname.includes('/aboutus')
   const isLogin = location.pathname.includes('/login')
 
-  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin || isAdminPostspage || isAdminAboutpage || isDetailAbout || isDetailPost || isregisterpost || isAdminuserspage || isregisterperson || isregisterproduct || isregistermetric || isregisterhome
+  const renderNavAndFoot = isAdminpage || isMainpage || isDetailpage || isContact || isAboutUs || isLogin || isAdminPostspage || isAdminAboutpage || isregisterpost || isAdminuserspage || isregisterperson || isregisterproduct || isregistermetric || isregisterhome
   const shouldRenderFoot = !(location.pathname === '/')
 
   return (
@@ -55,8 +51,6 @@ function App () {
         <Route path='/adminusers' element={<AdminUsers />} />
         <Route path='/mainpage' element={<Mainpage />} />
         <Route path='/detailpage' element={<Detailpage />} />
-        <Route path='/detailpost/:id' element={<DetailPost />} />
-        <Route path='/detailabout/:id' element={<DetailAbout />} />
         <Route path='/registerpost' element={<RegisterPost />} />
         <Route path='/registerperson' element={<RegisterPerson />} />
         <Route path='/registerproduct' element={<RegisterProduct />} />
