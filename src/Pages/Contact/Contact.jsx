@@ -9,7 +9,6 @@ const Contact = () => {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post('/enviarCorreo', data)
-      console.log('entro')
       if (response.status === 200) {
         console.log('Mensaje enviado correctamente.')
         reset()

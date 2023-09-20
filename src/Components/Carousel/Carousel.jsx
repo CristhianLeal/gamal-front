@@ -11,9 +11,7 @@ const Carousel = () => {
     const fetchHome = async () => {
       try {
         const response = await axios.get('http://localhost:8003/home')
-        console.log(response)
         if (response.data !== '') {
-          console.log('entro')
           setData(response.data.home[0])
         } else {
           setData(response.data)
