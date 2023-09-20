@@ -1,15 +1,34 @@
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import GamalDigitalColor from '../../assets/GamalDigitalColor.png'
 import './home.css'
 import Video from '../../assets/Intro.mp4'
 import { Footer } from '../../Components'
+import axios from 'axios'
 
 const Home = () => {
+  const [videoUrl, setVideoUrl] = useState('')
+  const [data, setData] = useState('')
+
+  useEffect(() => {
+    const imageId = '6509d1c1471503dc5157cf18'
+    const fetchImage = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8003/video/${imageId}`)
+        // console.log(response)
+        const url = URL.createObjectURL(new Blob([response.data]))
+        console.log(url)
+        setData(url)
+      } catch (error) {
+        console.error('Error al obtener la imagen:', error)
+      }
+    }
+    fetchImage()
+  }, [])
   useEffect(() => {
     const video = document.getElementById('background-video')
     video.play()
-  }, [])
+  }, [data])
 
   return (
     <div className="home-container">
