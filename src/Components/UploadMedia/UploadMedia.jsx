@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-toastify'
 
-function UploadVideo () {
+function UploadMedia () {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState(false)
@@ -13,34 +13,41 @@ function UploadVideo () {
 
   const onSubmit = async (data) => {
     setLoading(true)
-    console.log(data.video[0])
     try {
-      const response = await axios.post(
-        'http://localhost:8003/video',
-        {
-          file: data.video[0],
-          tipo: 'video'
-        },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        }
-      )
-      if (response.status === 201) {
-        toast.success(response.data.message)
-        // window.location.href = '/adminposts'
-      } else {
-        toast.error(response.data)
-      }
-      setLoading(false)
-      setSuccess(true)
-      // window.location.reload(true)
+      console.log('mabel')
+      const response = await axios.post('http://localhost:8003/media', data)
     } catch (error) {
-      setLoading(false)
-      setError(true)
-      setErrorMessage(error.message)
+      console.error('Error al crear metrica', error)
     }
+
+    // try {
+    //   console.log('holaes')
+    //   console.log(data.file[0])
+    //   const formData = new FormData()
+    //   formData.append('file', data.file[0])
+    //   console.log('FormData:', formData)
+    //   const response = await axios.post(
+    //     'http://localhost:8003/media',
+    //     formData,
+    //     {
+    //       headers: {
+    //         'Content-Type': 'multipart/form-data'
+    //       }
+    //     }
+    //   )
+    //   if (response.status === 201) {
+    //     toast.success(response.data.message)
+    //   } else {
+    //     toast.error(response.data)
+    //   }
+
+    //   setLoading(false)
+    //   setSuccess(true)
+    // } catch (error) {
+    //   setLoading(false)
+    //   setError(true)
+    //   setErrorMessage(error.message)
+    // }
   }
 
   function handleFileInputChange (event) {
@@ -56,11 +63,10 @@ function UploadVideo () {
           <div className="input-group w-100 mx-auto">
             <input
               type="file"
-              id="videoInput"
-              name="video"
-              accept="video/*"
+              id="fileInput"
+              name="file"
               className="form-control"
-              {...register('video', { required: true })}
+              {...register('file', { required: true })}
               data-file-name="Select File.."
               onChange={handleFileInputChange}
             />
@@ -72,7 +78,7 @@ function UploadVideo () {
                   aria-hidden="true"
                 ></span>
               )}
-              {!loading && !success && 'Subir Recibo'}
+              {!loading && !success && 'Subir Imagen'}
               {success && (
                 <>
                   <span
@@ -83,7 +89,7 @@ function UploadVideo () {
               )}
             </button>
           </div>
-          {errors.video && (
+          {errors.image && (
             <span className="text-danger fs-6">Seleccione un archivo.</span>
           )}
           {error && <p className="text-danger">{errorMessage}</p>}
@@ -93,4 +99,4 @@ function UploadVideo () {
   )
 }
 
-export default UploadVideo
+export default UploadMedia

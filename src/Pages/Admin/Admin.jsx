@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { UploadVideo, AdmBut } from '../../Components/index'
+import { UploadMedia, AdmBut } from '../../Components/index'
 
 const Admin = () => {
   const [data, setData] = useState([])
@@ -47,7 +47,7 @@ const Admin = () => {
     <div className="admin-container mt-5">
       <div className="container">
         <h1 className="text-center text-white">Página de Inicio</h1>
-        <UploadVideo/>
+        <UploadMedia/>
         <table className="table table-dark table-bordered">
           <thead>
             <tr>
