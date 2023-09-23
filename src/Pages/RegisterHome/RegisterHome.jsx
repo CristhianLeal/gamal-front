@@ -108,7 +108,6 @@ const RegisterHome = () => {
               className={`form-control ${errors.video ? 'is-invalid' : ''}`}
               placeholder="video"
               {...register('video', {
-                required: 'video is required',
                 minLength: {
                   value: 3,
                   message: 'video must be at least 3 characters long'
