@@ -24,7 +24,7 @@ const TableForm = ({ data, onDeleteLink }) => {
           {dataS?.map((item, index) => (
             <tr key={index}>
               <td>
-                <a href={item} target='blank' className='text-decoration-none text-white'>
+                <a href={item} target='blank' className='text-decoration-none text-white' style={{ display: 'block', maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                 {item}
                 </a>
               </td>
