@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
-import { UploadMedia, AdmBut } from '../../Components/index'
+import { AdmBut } from '../../Components/index'
 
 const Admin = () => {
   const [data, setData] = useState([])
@@ -12,13 +12,10 @@ const Admin = () => {
     const fetchHome = async () => {
       try {
         const response = await axios.get('http://localhost:8003/home')
-        console.log(response)
         if (response.data !== '') {
-          console.log('entro')
           setData(response.data.home[0])
         } else {
           setData(response.data)
-          console.log('no hay data')
         }
       } catch (error) {
         console.error('Error al obtener los datos de las metricas:', error)
@@ -47,7 +44,6 @@ const Admin = () => {
     <div className="admin-container mt-5">
       <div className="container">
         <h1 className="text-center text-white">Página de Inicio</h1>
-        <UploadMedia/>
         <table className="table table-dark table-bordered">
           <thead>
             <tr>
