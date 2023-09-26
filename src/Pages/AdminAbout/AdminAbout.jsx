@@ -44,7 +44,12 @@ const AdminAbout = () => {
 
   const deletePerson = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/persons/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/persons/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -57,7 +62,12 @@ const AdminAbout = () => {
   }
   const deleteProduct = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/products/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/products/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -70,7 +80,12 @@ const AdminAbout = () => {
   }
   const deleteMetric = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/metrics/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/metrics/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)

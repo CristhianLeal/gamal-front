@@ -29,7 +29,12 @@ const Admin = () => {
   }
   const deleteHome = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/home/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/home/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)

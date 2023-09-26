@@ -7,10 +7,16 @@ import { toast } from 'react-toastify'
 
 const AdminUsers = () => {
   const [usersData, setUsersData] = useState([])
+  const [deleted, setDeleted] = useState(false)
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/users')
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.get('http://localhost:8003/users', { headers })
         setUsersData(response.data.users)
       } catch (error) {
         console.error('Error al obtener los datos de los usuarios:', error)
@@ -18,13 +24,19 @@ const AdminUsers = () => {
     }
     fetchUsers()
     localStorage.clear()
-  }, [])
+  }, [deleted])
 
   const deleteUser = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/users/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/users/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
+        setDeleted(!deleted)
       } else {
         toast.error(response.data)
       }

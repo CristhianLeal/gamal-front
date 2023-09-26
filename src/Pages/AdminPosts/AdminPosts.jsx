@@ -22,7 +22,12 @@ const AdminPosts = () => {
   }, [deleted])
   const deletePost = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:8003/posts/${id}`)
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/posts/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
