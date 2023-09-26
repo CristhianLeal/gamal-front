@@ -14,7 +14,6 @@ const Home = () => {
       try {
         const response = await axios.get('http://localhost:8003/home')
         if (response.data !== '') {
-          console.log(response.data.home[0])
           setData(response.data.home[0])
         } else {
           setData(response.data)
@@ -55,7 +54,6 @@ const Home = () => {
             }}
           />
           )}
-        {/* <img src={data.video} alt="" /> */}
       <div>
         <Link to="/mainpage" className="d-flex align-items-center justify-content-center ">
           <img src={GamalDigitalColor} alt="GamalDigitalColor" className='imagenHome'/>
