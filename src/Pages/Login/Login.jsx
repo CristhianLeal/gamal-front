@@ -5,6 +5,10 @@ import { toast } from 'react-toastify'
 import './login.css'
 
 const Login = () => {
+  const token = sessionStorage.getItem('token')
+  if (token !== null) {
+    window.location.href = '/admin'
+  }
   const [code, setCreationCode] = useState('')
   const [submitButtonText, setSubmitButtonText] = useState('Login')
   const [message, setMessage] = useState('')
@@ -19,8 +23,11 @@ const Login = () => {
           password: data.password,
           code: data.code
         })
-        if (response.status === 201) {
+        if (response.status === 200) {
           toast.success(response.data.message)
+          sessionStorage.setItem('token', response.data.token)
+          sessionStorage.setItem('user', data.email)
+          window.location.href = '/admin'
         } else {
           toast.error(response.data)
         }
