@@ -13,7 +13,6 @@ const RegisterPost = () => {
   const [reelS, setReelS] = useState([])
   const [data, setData] = useState([])
   const onSubmit = async (data) => {
-    console.log(data)
     const check = () => {
       if (data.foto !== '') {
         if (Array.isArray(fotoS)) {
@@ -45,8 +44,13 @@ const RegisterPost = () => {
     }
     if (id === null) {
       try {
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
         check()
-        const response = await axios.post('http://localhost:8003/posts', data)
+        const response = await axios.post('http://localhost:8003/posts', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -61,7 +65,12 @@ const RegisterPost = () => {
     } else {
       check()
       try {
-        const response = await axios.put(`http://localhost:8003/posts/${id}`, data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.put(`http://localhost:8003/posts/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()

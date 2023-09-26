@@ -8,10 +8,14 @@ import { useEffect } from 'react'
 const RegisterMetric = () => {
   const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
   const onSubmit = async (data) => {
-    console.log(data)
     if (description === null) {
       try {
-        const response = await axios.post('http://localhost:8003/metrics', data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.post('http://localhost:8003/metrics', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -26,7 +30,12 @@ const RegisterMetric = () => {
       reset()
     } else {
       try {
-        const response = await axios.put(`http://localhost:8003/metrics/${id}`, data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.put(`http://localhost:8003/metrics/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()

@@ -26,7 +26,12 @@ const RegisterHome = () => {
     if (id === null) {
       try {
         check()
-        const response = await axios.post('http://localhost:8003/home', data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.post('http://localhost:8003/home', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -41,7 +46,12 @@ const RegisterHome = () => {
     } else {
       check()
       try {
-        const response = await axios.put(`http://localhost:8003/home/${id}`, data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.put(`http://localhost:8003/home/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()

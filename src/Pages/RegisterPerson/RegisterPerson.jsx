@@ -10,7 +10,12 @@ const RegisterPerson = () => {
   const onSubmit = async (data) => {
     if (name === null) {
       try {
-        const response = await axios.post('http://localhost:8003/persons', data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.post('http://localhost:8003/persons', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
         } else {
@@ -23,7 +28,12 @@ const RegisterPerson = () => {
       reset()
     } else {
       try {
-        const response = await axios.put(`http://localhost:8003/persons/${id}`, data)
+        const token = sessionStorage.getItem('token')
+        const headers = {
+          'Content-Type': 'application/json',
+          accesstoken: `${token}`
+        }
+        const response = await axios.put(`http://localhost:8003/persons/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()
