@@ -15,7 +15,6 @@ const Carousel = () => {
           setData(response.data.home[0])
         } else {
           setData(response.data)
-          console.log('no hay data')
         }
       } catch (error) {
         console.error('Error al obtener los datos de las metricas:', error)

@@ -12,7 +12,6 @@ const RegisterHome = () => {
   const [data, setData] = useState([])
   const onSubmit = async (data) => {
     const check = () => {
-      console.log(data.foto)
       if (data.foto !== '') {
         if (Array.isArray(fotoS)) {
           data.foto = [...fotoS, data.foto]
@@ -71,7 +70,6 @@ const RegisterHome = () => {
       try {
         const response = await axios.get(`http://localhost:8003/home/${id}`)
         setData(response.data.home)
-        console.log(response.data.home)
       } catch (error) {
         console.error('Error al obtener los datos de home:', error)
       }
