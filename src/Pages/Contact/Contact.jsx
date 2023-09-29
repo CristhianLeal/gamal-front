@@ -1,24 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import axios from 'axios'
 import './contact.css'
 
 const Contact = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, formState: { errors } } = useForm()
 
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post('/enviarCorreo', data)
-      if (response.status === 200) {
-        console.log('Mensaje enviado correctamente.')
-        reset()
-      } else {
-        console.log('Error al enviar el mensaje.')
-      }
-    } catch (error) {
-      console.error('Error de red:', error)
-    }
-  }
   const [contVisible, setContVisible] = useState([])
 
   const ERef0 = useRef(null)
@@ -53,12 +39,13 @@ const Contact = () => {
       </div>
 
       <div ref={ERef1} className={`d-flex justify-content-center align-items-center Efect2 ${contVisible[1] ? 'EfectVisible2' : ''}`}>
-        <form className='d-flex flex-column align-items-center justify-content-center col-sm-6 col-10' onSubmit={handleSubmit(onSubmit)}>
+        <form action="https://formsubmit.co/cristhianaugustoleal@gmail.com" method="POST" className='d-flex flex-column align-items-center justify-content-center col-sm-6 col-10' >
             <div className='d-flex flex-row align-items-center justify-content-center col-12 py-2'>
               <label className='text-white typeForm col-md-2 col-3' htmlFor='name'>Nombre:</label>
               <input
                 className='col-9 col-md-10'
                 type='text'
+                name='name'
                 id='name'
                 placeholder='Example'
                 {...register('name', {
@@ -77,6 +64,7 @@ const Contact = () => {
               <input
                 className='col-9 col-md-10'
                 type='email'
+                name='email'
                 id='email'
                 placeholder='example@example.com'
                 {...register('email', {
@@ -95,6 +83,7 @@ const Contact = () => {
               <textarea
                 className='col-9 col-md-10'
                 id='message'
+                name='message'
                 placeholder='You could write your message here...'
                 {...register('message', {
                   required: 'Este campo es obligatorio',
@@ -109,6 +98,8 @@ const Contact = () => {
             </div>
             {errors.message && <span className='text-danger'>{errors.message.message}</span>}
             <button className='ButtonForm p-1 d-flex justify-content-center align-items-center' type='submit'>Enviar</button>
+            <input type="hidden" name='_next' value='http://127.0.0.1:5173/'/>
+            <input type="hidden" name='_captcha' value='false'/>
         </form>
       </div>
 
