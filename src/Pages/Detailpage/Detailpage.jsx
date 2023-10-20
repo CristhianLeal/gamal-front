@@ -91,8 +91,8 @@ const DetailPage = () => {
       <div ref={ERef0} className={`Efectd1 ${contVisible[0] ? 'EfectVisibled1' : ''}`}>
         <h3 className='text-white text-center titleDetail'>{post.name}</h3>
         <p className='text-white text-center mb-5 px-2'>{post.description}</p>
-        <div id="picturesSection"></div>
       </div>
+      <div id="picturesSection"></div>
       {post.fotos && post.fotos.length > 0 && <div ref={ERef1} className={`Efectd2 ${contVisible[1] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Imagenes</h4>
@@ -100,10 +100,10 @@ const DetailPage = () => {
             {post.fotos?.map((foto, index) => (
               <img key={index} src={foto} className="imgDetail border-0 col-md-3 col-11" alt="Imagen" onClick={() => toggleFullScreenImage(foto)} />
             ))}
-            <div id="videosSection" ></div>
           </div>
         </div>
       </div>}
+      <div id="videosSection" ></div>
       {post.videos && post.videos.length > 0 && <div ref={ERef2} className={`Efectd3 ${contVisible[2] ? 'EfectVisibled3' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Videos</h4>
@@ -124,10 +124,10 @@ const DetailPage = () => {
                 ></iframe>
               )
             })}
-            <div id="reelsSection" ></div>
           </div>
         </div>
       </div>}
+      <div id="reelsSection" ></div>
       {post.reels && post.reels.length > 0 && <div ref={ERef3} className={`Efectd2 ${contVisible[3] ? 'EfectVisibled2' : ''}`}>
         <div className='d-flex flex-column col-12 mb-5'>
           <h4 className='text-center text-white mb-4 SubDetail'>Reels</h4>
@@ -144,9 +144,9 @@ const DetailPage = () => {
         </div>
       )}
       <script async src="//www.instagram.com/embed.js"></script>
-      {post.fotos && post.fotos.length > 0 && <ScrollToPicturesButton className='scroll-to-pictures-button' />}
-      {post.videos && post.videos.length > 0 && <ScrollToVideosButton className='scroll-to-videos-button' />}
-      {post.reels && post.reels.length > 0 && <ScrollToReelsButton className='scroll-to-reels-button'/>}
+      {post.fotos && post.fotos.length > 0 && <ScrollToPicturesButton className='scroll-to-pictures-button buttonStyle py-0 px-2' />}
+      {post.videos && post.videos.length > 0 && <ScrollToVideosButton className='scroll-to-videos-button buttonStyle py-0 px-2' />}
+      {post.reels && post.reels.length > 0 && <ScrollToReelsButton className='scroll-to-reels-button buttonStyle py-0 px-2'/>}
     </div>
   )
 }
