@@ -14,6 +14,7 @@ const Navbar = () => {
   }
   const handleClick = () => {
     sessionStorage.clear()
+    localStorage.clear()
     window.location.href = '/'
   }
   useEffect(() => {
