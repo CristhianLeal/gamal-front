@@ -24,18 +24,41 @@
   bottom: 20px;
   right: 20px;
   z-index: 9998;
+  border: rgb(217,217,217);
+  border-radius: 100px;
+  background-color: rgb(217,217,217);
+}
+.scroll-to-reels-button:hover{
+  color: white;
+  background-color:rgb(107,156,2);
 }
 .scroll-to-videos-button {
   position: fixed;
   bottom: 60px;
   right: 20px;
   z-index: 9998;
+  border: rgb(217,217,217);
+  border-radius: 100px;
+  background-color: rgb(217,217,217);
+  
+}
+.scroll-to-videos-button:hover{
+  color: white;
+  background-color:rgb(107,156,2);
 }
 .scroll-to-pictures-button{
   position: fixed;
   bottom: 100px;
   right: 20px;
   z-index: 9998;
+  border: rgb(217,217,217);
+  border-radius: 100px;
+  background-color: rgb(217,217,217);
+  
+}
+.scroll-to-pictures-button:hover{
+  color: white;
+  background-color:rgb(107,156,2);
 }
 .SubDetail{
   font-size: 40px;
