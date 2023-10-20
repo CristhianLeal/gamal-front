@@ -1,59 +1,93 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 import './login.css'
 
 const Login = () => {
   const token = sessionStorage.getItem('token')
+  const editId = localStorage.getItem('editId')
+  const email = localStorage.getItem('email')
+  const password = localStorage.getItem('password')
   if (token !== null) {
-    window.location.href = '/admin'
+    if (editId === null) {
+      window.location.href = '/adminusers'
+    }
   }
   const [code, setCreationCode] = useState('')
   const [submitButtonText, setSubmitButtonText] = useState('Login')
   const [message, setMessage] = useState('')
-  const { register, handleSubmit, formState: { errors }, reset } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
 
   const onSubmit = async (data) => {
-    if (code === '112233') {
-      setMessage('Creando usuario...')
-      try {
-        const response = await axios.post('http://localhost:8003/users', {
-          email: data.email,
-          password: data.password,
-          code: data.code
-        })
-        if (response.status === 200) {
-          toast.success(response.data.message)
-          sessionStorage.setItem('token', response.data.token)
-          sessionStorage.setItem('user', data.email)
-          window.location.href = '/admin'
-        } else {
-          toast.error(response.data)
+    if (code !== '') {
+      if (editId === null) {
+        setMessage('Creando usuario...')
+        try {
+          const response = await axios.post('http://localhost:8003/users', {
+            email: data.email,
+            password: data.password,
+            code: data.code
+          })
+          if (response.status === 200) {
+            toast.success(response.data.message)
+            sessionStorage.setItem('token', response.data.token)
+            sessionStorage.setItem('user', data.email)
+            window.location.href = '/admin'
+          } else {
+            toast.error(response.data)
+          }
+        } catch (error) {
+          console.error('Error al crear usuario', error)
+          toast.error(error.response.data.message)
+          setMessage('Error al crear usuario')
         }
-      } catch (error) {
-        console.error('Error al crear usuario', error)
-        toast.error(error.response.data.message)
-        setMessage('Error al crear usuario')
+      } else {
+        if (code === '112233') {
+          deleteUser(editId)
+        } else {
+          toast.error('Código incorrecto')
+          setMessage('Código incorrecto')
+        }
       }
     } else if (code === '') {
-      setMessage('Iniciando sesión...')
-      try {
-        const response = await axios.post('http://localhost:8003/users/login', {
-          email: data.email,
-          password: data.password
-        })
-        if (response.status === 200) {
-          toast.success(`${response.data.user.email},logueado `)
-          sessionStorage.setItem('token', response.data.token)
-          sessionStorage.setItem('user', data.email)
-          reset()
-          window.location.href = '/admin'
-        } else {
-          toast.error(response.data.message)
+      if (editId === null) {
+        setMessage('Iniciando sesión...')
+        try {
+          const response = await axios.post('http://localhost:8003/users/login', {
+            email: data.email,
+            password: data.password
+          })
+          if (response.status === 200) {
+            toast.success(`${response.data.user.email},logueado `)
+            sessionStorage.setItem('token', response.data.token)
+            sessionStorage.setItem('user', data.email)
+            reset()
+            window.location.href = '/admin'
+          } else {
+            toast.error(response.data.message)
+          }
+        } catch (error) {
+          console.error(error)
         }
-      } catch (error) {
-        console.error(error)
+      } else {
+        try {
+          const headers = {
+            'Content-Type': 'application/json',
+            accesstoken: `${token}`
+          }
+          const response = await axios.put(`http://localhost:8003/users/${editId}`, data, { headers })
+          if (response.status === 201) {
+            toast.success(response.data.message)
+            clearStorage()
+          } else {
+            toast.error(response.data)
+          }
+        } catch (error) {
+          console.error('Error al editar persona', error)
+          toast.error(error.response.data.message)
+        }
       }
     } else {
       toast.error('Código incorrecto')
@@ -61,14 +95,44 @@ const Login = () => {
     }
   }
 
+  const clearStorage = () => {
+    localStorage.clear()
+  }
+
   const handleCodeChange = (event) => {
     const newCode = event.target.value
     if (newCode.length === 0) {
       setSubmitButtonText('Login')
+    } else if (editId !== null) {
+      setSubmitButtonText('Eliminar usuario')
     } else {
       setSubmitButtonText('Crear Usuario')
     }
     setCreationCode(newCode)
+  }
+
+  useEffect(() => {
+    setValue('email', email)
+    setValue('password', password)
+  }, [])
+
+  const deleteUser = async (id) => {
+    try {
+      const token = sessionStorage.getItem('token')
+      const headers = {
+        'Content-Type': 'application/json',
+        accesstoken: `${token}`
+      }
+      const response = await axios.delete(`http://localhost:8003/users/${id}`, { headers })
+      if (response.status === 200) {
+        toast.success(response.data.message)
+        window.location.href = '/adminusers'
+      } else {
+        toast.error(response.data)
+      }
+    } catch (error) {
+      console.error('Error al obtener los datos de los usuarios:', error)
+    }
   }
 
   return (
@@ -77,7 +141,9 @@ const Login = () => {
         <div className="row justify-content-center">
           <div className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
             <div className="login-form">
-              <h1>Login</h1>
+              {editId === null
+                ? <h2 className='text-center'>LOGIN</h2>
+                : <h2 className='text-center'>EDIT USER</h2>}
               <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">
                   <label>Email</label>
@@ -89,7 +155,6 @@ const Login = () => {
                   />
                   {errors.email && <span className="error">{errors.email.message}</span>}
                 </div>
-
                 <div className="form-group">
                   <label>Password</label>
                   <input
@@ -118,13 +183,36 @@ const Login = () => {
                   {errors.code && <span className="error">{errors.code.message}</span>}
                 </div>
                 <div className="text-center mt-3">
-                  <button className="btn btn-primary" type="submit">
-                    {submitButtonText}
-                  </button>
+                  {editId === null
+                    ? <button className="btn btn-primary" type="submit">
+                        {submitButtonText}
+                      </button>
+                    : ''}
+                    { editId !== null && submitButtonText === 'Login'
+                      ? <button className="btn btn-success" type="submit">
+                        EDITAR
+                      </button>
+                      : ''
+                    }
+                    { submitButtonText === 'Eliminar usuario' && editId !== null
+                      ? <button className="btn btn-danger action-button" type="submit">
+                        ELIMINAR
+                      </button>
+                      : ''
+                    }
                   <p className="message mt-3">{message}</p>
                 </div>
               </form>
             </div>
+            {editId !== null
+              ? <div className='text-center mt-3'>
+              <Link className='text-decoration-none text-white mt-4' to={'/adminusers'} onClick={clearStorage}>
+                <button className="btn btn-primary action-button mx-2">
+                  ATRAS
+                </button>
+              </Link>
+            </div>
+              : ''}
           </div>
         </div>
       </div>
