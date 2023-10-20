@@ -3,11 +3,9 @@ import AdmBut from '../../Components/AdmBut/AdmBut'
 import { Link } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { toast } from 'react-toastify'
 
 const AdminUsers = () => {
   const [usersData, setUsersData] = useState([])
-  const [deleted, setDeleted] = useState(false)
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -24,25 +22,12 @@ const AdminUsers = () => {
     }
     fetchUsers()
     localStorage.clear()
-  }, [deleted])
+  }, [])
 
-  const deleteUser = async (id) => {
-    try {
-      const token = sessionStorage.getItem('token')
-      const headers = {
-        'Content-Type': 'application/json',
-        accesstoken: `${token}`
-      }
-      const response = await axios.delete(`http://localhost:8003/users/${id}`, { headers })
-      if (response.status === 200) {
-        toast.success(response.data.message)
-        setDeleted(!deleted)
-      } else {
-        toast.error(response.data)
-      }
-    } catch (error) {
-      console.error('Error al obtener los datos de los usuarios:', error)
-    }
+  const editUser = (user) => {
+    localStorage.setItem('editId', user._id)
+    localStorage.setItem('email', user.email)
+    localStorage.setItem('password', user.password)
   }
 
   return (
@@ -53,7 +38,6 @@ const AdminUsers = () => {
           <thead>
             <tr>
               <th>Email</th>
-              <th>Contraseña</th>
               <th>
                   Acciones
                 <button className="btn btn-primary action-button mx-2">
@@ -63,18 +47,17 @@ const AdminUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {usersData.map((item) => (
-              <tr key={item._id}>
+            {usersData.map((user) => (
+              <tr key={user._id}>
                 <td>
-                  <p>{item.email}</p>
+                  <p>{user.email}</p>
                 </td>
                 <td>
-                  <p>{item.password}</p>
-                </td>
-                <td>
-                  <button className="btn btn-danger action-button" onClick={() => deleteUser(item._id) }>
-                    <i className="bi bi-trash">Eliminar</i>
-                  </button>
+                  <Link className='text-decoration-none text-white' to={'/login'}>
+                    <button className="btn btn-success action-button" onClick={() => editUser(user) }>
+                        <i className="bi bi-pen">Editar</i>
+                    </button>
+                  </Link>
                 </td>
               </tr>
             ))}
