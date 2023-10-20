@@ -1,5 +1,5 @@
 .carousel-image {
-  width: 30px;
+  width: auto;
   height: 30px;
 }
 .carousel-image:last-child {
@@ -14,7 +14,12 @@
 
 @media (min-width: 768px) {
   .carousel-image {
-    width: 60px;
+    width: auto;
     height: 60px;
+  }
+  .carousel-container {
+    width: 50% !important;
+    height: auto !important;
+    overflow: hidden;
   }
 }
