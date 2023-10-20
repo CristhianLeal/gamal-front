@@ -98,7 +98,7 @@ const AboutUs = () => {
           countYoutube = parseFloat(countYoutube.toFixed(2))
           setYoutube(countYoutube)
         }
-      }, 50)
+      }, 30)
       return () => {
         clearInterval(intervalId)
       }
@@ -108,7 +108,7 @@ const AboutUs = () => {
     <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUE HACEMOS?</h2>
-        <p className='text-white text-center px-3 fs-4'>{metrics.description}</p>
+        <p className='text-white text-center metricStyle px-5 fs-4'>{metrics.description}</p>
       </div>
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
@@ -154,19 +154,19 @@ const AboutUs = () => {
           <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center mt-md-5 mt-3'>
             {metrics.face && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-facebook IconMetric2 px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{face} M</p>
+              <p className='color-metric text-center m-0 px-3 py-0 fs-4'><b>{face} M</b></p>
             </div>}
             {metrics.insta && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-instagram IconMetric2 px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{insta} M</p>
+              <p className='color-metric text-center m-0 px-3 py-0 fs-4'><b>{insta} M</b></p>
             </div>}
             {metrics.twitter && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-twitter IconMetric2 px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{twitter} M</p>
+              <p className='color-metric text-center m-0 px-3 py-0 fs-4'><b>{twitter} M</b></p>
             </div>}
             {metrics.youtube && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-youtube IconMetric2 px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{youtube} M</p>
+              <p className='color-metric text-center m-0 px-3 py-0 fs-4'><b>{youtube} M</b></p>
             </div>}
           </div>
         </div>
