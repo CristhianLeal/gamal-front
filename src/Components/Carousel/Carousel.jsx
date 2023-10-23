@@ -10,7 +10,7 @@ const Carousel = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/home')
+        const response = await axios.get('http://100.24.70.232/home')
         if (response.data !== '') {
           setData(response.data.home[0])
         } else {

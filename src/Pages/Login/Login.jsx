@@ -25,7 +25,7 @@ const Login = () => {
       if (editId === null) {
         setMessage('Creando usuario...')
         try {
-          const response = await axios.post('http://localhost:8003/users', {
+          const response = await axios.post('http://100.24.70.232/users', {
             email: data.email,
             password: data.password,
             code: data.code
@@ -55,7 +55,7 @@ const Login = () => {
       if (editId === null) {
         setMessage('Iniciando sesión...')
         try {
-          const response = await axios.post('http://localhost:8003/users/login', {
+          const response = await axios.post('http://100.24.70.232/users/login', {
             email: data.email,
             password: data.password
           })
@@ -77,7 +77,7 @@ const Login = () => {
             'Content-Type': 'application/json',
             accesstoken: `${token}`
           }
-          const response = await axios.put(`http://localhost:8003/users/${editId}`, data, { headers })
+          const response = await axios.put(`http://100.24.70.232/users/${editId}`, data, { headers })
           if (response.status === 201) {
             toast.success(response.data.message)
             clearStorage()
@@ -123,7 +123,7 @@ const Login = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`http://localhost:8003/users/${id}`, { headers })
+      const response = await axios.delete(`http://100.24.70.232/users/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         window.location.href = '/adminusers'
@@ -172,7 +172,9 @@ const Login = () => {
                   {errors.password && <span className="error">{errors.password.message}</span>}
                 </div>
                 <div className="form-group">
-                  <label>Código de Creación</label>
+                {editId === null
+                  ? <label>Código de Creación</label>
+                  : <label>Código de eliminación</label>}
                   <input
                     type="password"
                     className="form-control"

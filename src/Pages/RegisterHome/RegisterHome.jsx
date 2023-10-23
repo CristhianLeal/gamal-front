@@ -30,7 +30,7 @@ const RegisterHome = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.post('http://localhost:8003/home', data, { headers })
+        const response = await axios.post('http://100.24.70.232/home', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -50,7 +50,7 @@ const RegisterHome = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.put(`http://localhost:8003/home/${id}`, data, { headers })
+        const response = await axios.put(`http://100.24.70.232/home/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()
@@ -68,7 +68,7 @@ const RegisterHome = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/home/${id}`)
+        const response = await axios.get(`http://100.24.70.232/home/${id}`)
         setData(response.data.home)
       } catch (error) {
         console.error('Error al obtener los datos de home:', error)

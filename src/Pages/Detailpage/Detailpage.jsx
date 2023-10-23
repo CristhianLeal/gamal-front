@@ -73,7 +73,7 @@ const DetailPage = () => {
     window.addEventListener('scroll', handleScroll)
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://localhost:8003/posts/${postId}`)
+        const response = await axios.get(`http://100.24.70.232/posts/${postId}`)
         setPost(response.data.post)
         handleScroll()
       } catch (error) {

@@ -14,7 +14,7 @@ const AdminAbout = () => {
   useEffect(() => {
     const fetchPersons = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/persons')
+        const response = await axios.get('http://100.24.70.232/persons')
         setPersonsData(response.data.persons)
       } catch (error) {
         console.error('Error al obtener los datos de las personas:', error)
@@ -22,7 +22,7 @@ const AdminAbout = () => {
     }
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/products')
+        const response = await axios.get('http://100.24.70.232/products')
         setProductsData(response.data.products)
       } catch (error) {
         console.error('Error al obtener los datos de los productos:', error)
@@ -30,7 +30,7 @@ const AdminAbout = () => {
     }
     const fetchMetrics = async () => {
       try {
-        const response = await axios.get('http://localhost:8003/metrics')
+        const response = await axios.get('http://100.24.70.232/metrics')
         setMetricsData(response.data.metrics)
       } catch (error) {
         console.error('Error al obtener los datos de las metricas:', error)
@@ -49,7 +49,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`http://localhost:8003/persons/${id}`, { headers })
+      const response = await axios.delete(`http://100.24.70.232/persons/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -67,7 +67,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`http://localhost:8003/products/${id}`, { headers })
+      const response = await axios.delete(`http://100.24.70.232/products/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -85,7 +85,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`http://localhost:8003/metrics/${id}`, { headers })
+      const response = await axios.delete(`http://100.24.70.232/metrics/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
