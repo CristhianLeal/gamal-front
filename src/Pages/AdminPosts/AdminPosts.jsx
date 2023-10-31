@@ -11,7 +11,7 @@ const AdminPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/posts')
+        const response = await axios.get('api.gamaldigital.com/posts')
         setPostsData(response.data.posts)
       } catch (error) {
         console.error('Error al obtener los datos de los posts:', error)
@@ -27,7 +27,7 @@ const AdminPosts = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`http://localhost:8080/posts/${id}`, { headers })
+      const response = await axios.delete(`api.gamaldigital.com/posts/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)

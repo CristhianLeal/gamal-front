@@ -29,7 +29,7 @@ const Mainpage = () => {
     window.addEventListener('scroll', handleScroll)
     const fetchPost = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/posts')
+        const response = await axios.get('api.gamaldigital.com/posts')
         setPostData(response.data.posts)
       } catch (error) {
         console.error('Error al obtener los posts:', error)

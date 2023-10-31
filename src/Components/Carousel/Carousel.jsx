@@ -10,7 +10,7 @@ const Carousel = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/home')
+        const response = await axios.get('api.gamaldigital.com/home')
         if (response.data !== '') {
           setData(response.data.home[0])
         } else {
