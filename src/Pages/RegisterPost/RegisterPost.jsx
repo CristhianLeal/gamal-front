@@ -50,7 +50,7 @@ const RegisterPost = () => {
           accesstoken: `${token}`
         }
         check()
-        const response = await axios.post('http://100.24.70.232/posts', data, { headers })
+        const response = await axios.post('http://localhost:8080/posts', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -70,7 +70,7 @@ const RegisterPost = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.put(`http://100.24.70.232/posts/${id}`, data, { headers })
+        const response = await axios.put(`http://localhost:8080/posts/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()
@@ -88,7 +88,7 @@ const RegisterPost = () => {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`http://100.24.70.232/posts/${id}`)
+        const response = await axios.get(`http://localhost:8080/posts/${id}`)
         setData(response.data.post)
       } catch (error) {
         console.error('Error al obtener los datos del post:', error)

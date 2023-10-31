@@ -14,7 +14,7 @@ const AdminUsers = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.get('http://100.24.70.232/users', { headers })
+        const response = await axios.get('http://localhost:8080/users', { headers })
         setUsersData(response.data.users)
       } catch (error) {
         console.error('Error al obtener los datos de los usuarios:', error)
