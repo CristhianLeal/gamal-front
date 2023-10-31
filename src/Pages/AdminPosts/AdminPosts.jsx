@@ -61,7 +61,7 @@ const AdminPosts = () => {
             </tr>
           </thead>
           <tbody>
-            {postsData.map((post) => (
+            {postsData?.map((post) => (
               <tr key={post._id}>
                 <td>
                   <p>{post.name}</p>

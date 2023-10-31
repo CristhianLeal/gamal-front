@@ -113,7 +113,7 @@ const AboutUs = () => {
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
         <div className='d-flex flex-wrap align-items-center justify-content-center gap-5'>
-          {personsData.map((person) => (
+          {personsData?.map((person) => (
             <CardPresentation key={person._id} person={person} />
           ))}
         </div>
@@ -121,7 +121,7 @@ const AboutUs = () => {
       <div ref={ElementRef2} className={`mt-5 llego2 ${cardVisibilities[2] ? 'visible2' : ''}`}>
         <h2 className='text-white text-center TitleH2'>NUESTROS PRODUCTOS</h2>
         <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
-          {productsData.map((product) => (
+          {productsData?.map((product) => (
             <CardProd key={product._id} product={product} />
           ))}
         </div>
@@ -129,7 +129,7 @@ const AboutUs = () => {
       <div ref={ElementRef3} className={`mt-5 llego3 ${cardVisibilities[3] ? 'visible3' : ''}`}>
         <h2 className='text-white text-center TitleH2'>FORMATOS COMERCIALES</h2>
         <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
-          {productsData.map((product) => (
+          {productsData?.map((product) => (
             <CardComer key={product._id} product={product} />
           ))}
         </div>

@@ -47,7 +47,7 @@ const AdminUsers = () => {
             </tr>
           </thead>
           <tbody>
-            {usersData.map((user) => (
+            {usersData?.map((user) => (
               <tr key={user._id}>
                 <td>
                   <p>{user.email}</p>

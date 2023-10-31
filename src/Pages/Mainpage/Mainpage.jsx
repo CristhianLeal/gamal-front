@@ -51,7 +51,7 @@ const Mainpage = () => {
       <div>
         <h2 ref={TitleRef3} className={`h2Portada mt-4 text-center llegot3 ${TitleVisibilities[2] ? 'visiblet3' : ''}`}>NUESTROS TRABAJOS</h2>
         <div className='d-flex flex-wrap align-items-center justify-content-center gap-5 mt-3 mb-3'>
-          {postData.map((post) => (
+          {postData?.map((post) => (
             <Card key={post._id} post={post} />
           ))}
         </div>
