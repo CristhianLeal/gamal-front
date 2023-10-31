@@ -25,7 +25,7 @@ const Login = () => {
       if (editId === null) {
         setMessage('Creando usuario...')
         try {
-          const response = await axios.post('api.gamaldigital.com/users', {
+          const response = await axios.post('http://api.gamaldigital.com/users', {
             email: data.email,
             password: data.password,
             code: data.code
@@ -55,7 +55,7 @@ const Login = () => {
       if (editId === null) {
         setMessage('Iniciando sesión...')
         try {
-          const response = await axios.post('api.gamaldigital.com/users/login', {
+          const response = await axios.post('http://api.gamaldigital.com/users/login', {
             email: data.email,
             password: data.password
           })
@@ -77,7 +77,7 @@ const Login = () => {
             'Content-Type': 'application/json',
             accesstoken: `${token}`
           }
-          const response = await axios.put(`api.gamaldigital.com/users/${editId}`, data, { headers })
+          const response = await axios.put(`http://api.gamaldigital.com/users/${editId}`, data, { headers })
           if (response.status === 201) {
             toast.success(response.data.message)
             clearStorage()
@@ -123,7 +123,7 @@ const Login = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`api.gamaldigital.com/users/${id}`, { headers })
+      const response = await axios.delete(`http://api.gamaldigital.com/users/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         window.location.href = '/adminusers'

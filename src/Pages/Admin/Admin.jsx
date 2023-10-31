@@ -11,7 +11,7 @@ const Admin = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get('api.gamaldigital.com/home')
+        const response = await axios.get('http://api.gamaldigital.com/home')
         if (response.data !== '') {
           setData(response.data.home[0])
         } else {
@@ -34,7 +34,7 @@ const Admin = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`api.gamaldigital.com/home/${id}`, { headers })
+      const response = await axios.delete(`http://api.gamaldigital.com/home/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
