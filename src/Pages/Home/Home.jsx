@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get('http://api.gamaldigital.com/home')
+        const response = await axios.get('https://api.gamaldigital.com/home')
         if (response.data !== '') {
           setData(response.data.home[0])
         } else {

@@ -14,7 +14,7 @@ const AdminUsers = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.get('http://api.gamaldigital.com/users', { headers })
+        const response = await axios.get('https://api.gamaldigital.com/users', { headers })
         setUsersData(response.data.users)
       } catch (error) {
         console.error('Error al obtener los datos de los usuarios:', error)

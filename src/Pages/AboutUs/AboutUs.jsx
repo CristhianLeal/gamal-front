@@ -45,7 +45,7 @@ const AboutUs = () => {
   useEffect(() => {
     const fetchPersons = async () => {
       try {
-        const response = await axios.get('http://api.gamaldigital.com/persons')
+        const response = await axios.get('https://api.gamaldigital.com/persons')
         setPersonsData(response.data.persons)
       } catch (error) {
         console.error('Error al obtener los datos de las personas:', error)
@@ -53,7 +53,7 @@ const AboutUs = () => {
     }
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://api.gamaldigital.com/products')
+        const response = await axios.get('https://api.gamaldigital.com/products')
         setProductsData(response.data.products)
       } catch (error) {
         console.error('Error al obtener los datos de los productos:', error)
@@ -61,7 +61,7 @@ const AboutUs = () => {
     }
     const fetchMetrics = async () => {
       try {
-        const response = await axios.get('http://api.gamaldigital.com/metrics')
+        const response = await axios.get('https://api.gamaldigital.com/metrics')
         setMetrics(response.data.metrics[0])
       } catch (error) {
         console.error('Error al obtener los datos de las metricas:', error)
