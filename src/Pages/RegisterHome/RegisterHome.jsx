@@ -30,7 +30,7 @@ const RegisterHome = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.post('https://api.gamaldigital.com/home', data, { headers })
+        const response = await axios.post('https://gamaldigital.com:8080/home', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -50,7 +50,7 @@ const RegisterHome = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.put(`https://api.gamaldigital.com/home/${id}`, data, { headers })
+        const response = await axios.put(`https://gamaldigital.com:8080/home/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()
@@ -68,7 +68,7 @@ const RegisterHome = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get(`https://api.gamaldigital.com/home/${id}`)
+        const response = await axios.get(`https://gamaldigital.com:8080/home/${id}`)
         setData(response.data.home)
       } catch (error) {
         console.error('Error al obtener los datos de home:', error)

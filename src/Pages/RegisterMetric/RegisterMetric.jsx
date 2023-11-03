@@ -15,7 +15,7 @@ const RegisterMetric = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.post('https://api.gamaldigital.com/metrics', data, { headers })
+        const response = await axios.post('https://gamaldigital.com:8080/metrics', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           reset()
@@ -35,7 +35,7 @@ const RegisterMetric = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.put(`https://api.gamaldigital.com/metrics/${id}`, data, { headers })
+        const response = await axios.put(`https://gamaldigital.com:8080/metrics/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()

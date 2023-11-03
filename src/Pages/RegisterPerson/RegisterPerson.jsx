@@ -15,7 +15,7 @@ const RegisterPerson = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.post('https://api.gamaldigital.com/persons', data, { headers })
+        const response = await axios.post('https://gamaldigital.com:8080/persons', data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
         } else {
@@ -33,7 +33,7 @@ const RegisterPerson = () => {
           'Content-Type': 'application/json',
           accesstoken: `${token}`
         }
-        const response = await axios.put(`https://api.gamaldigital.com/persons/${id}`, data, { headers })
+        const response = await axios.put(`https://gamaldigital.com:8080/persons/${id}`, data, { headers })
         if (response.status === 201) {
           toast.success(response.data.message)
           clearStorage()

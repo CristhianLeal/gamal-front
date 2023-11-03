@@ -73,7 +73,7 @@ const DetailPage = () => {
     window.addEventListener('scroll', handleScroll)
     const fetchPost = async () => {
       try {
-        const response = await axios.get(`https://api.gamaldigital.com/posts/${postId}`)
+        const response = await axios.get(`https://gamaldigital.com:8080/posts/${postId}`)
         setPost(response.data.post)
         handleScroll()
       } catch (error) {

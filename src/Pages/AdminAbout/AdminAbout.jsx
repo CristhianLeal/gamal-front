@@ -14,7 +14,7 @@ const AdminAbout = () => {
   useEffect(() => {
     const fetchPersons = async () => {
       try {
-        const response = await axios.get('https://api.gamaldigital.com/persons')
+        const response = await axios.get('https://gamaldigital.com:8080/persons')
         setPersonsData(response.data.persons)
       } catch (error) {
         console.error('Error al obtener los datos de las personas:', error)
@@ -22,7 +22,7 @@ const AdminAbout = () => {
     }
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('https://api.gamaldigital.com/products')
+        const response = await axios.get('https://gamaldigital.com:8080/products')
         setProductsData(response.data.products)
       } catch (error) {
         console.error('Error al obtener los datos de los productos:', error)
@@ -30,7 +30,7 @@ const AdminAbout = () => {
     }
     const fetchMetrics = async () => {
       try {
-        const response = await axios.get('https://api.gamaldigital.com/metrics')
+        const response = await axios.get('https://gamaldigital.com:8080/metrics')
         setMetricsData(response.data.metrics)
       } catch (error) {
         console.error('Error al obtener los datos de las metricas:', error)
@@ -49,7 +49,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`https://api.gamaldigital.com/persons/${id}`, { headers })
+      const response = await axios.delete(`https://gamaldigital.com:8080/persons/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -67,7 +67,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`https://api.gamaldigital.com/products/${id}`, { headers })
+      const response = await axios.delete(`https://gamaldigital.com:8080/products/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)
@@ -85,7 +85,7 @@ const AdminAbout = () => {
         'Content-Type': 'application/json',
         accesstoken: `${token}`
       }
-      const response = await axios.delete(`https://api.gamaldigital.com/metrics/${id}`, { headers })
+      const response = await axios.delete(`https://gamaldigital.com:8080/metrics/${id}`, { headers })
       if (response.status === 200) {
         toast.success(response.data.message)
         setDeleted(!deleted)

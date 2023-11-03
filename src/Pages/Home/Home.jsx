@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useLayoutEffect } from 'react'
 import { Link } from 'react-router-dom'
 import GamalDigitalColor from '../../assets/GamalDigitalColor.png'
 import './home.css'
@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchHome = async () => {
       try {
-        const response = await axios.get('https://api.gamaldigital.com/home')
+        const response = await axios.get('https://gamaldigital.com:8080/home')
         if (response.data !== '') {
           setData(response.data.home[0])
         } else {
@@ -24,7 +24,7 @@ const Home = () => {
     }
     fetchHome()
   }, [])
-  useEffect(() => {
+  useLayoutEffect(() => {
     const video = document.getElementById('background-video')
     video?.play()
   }, [data])
