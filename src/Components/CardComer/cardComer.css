@@ -13,8 +13,8 @@
   z-index: 1;
 }
 .imgComer{
-  width: 70%;
-  border-radius: 20px;
+  width: 50%;
+  /* border-radius: 20px; */
 }
 .cardComer:hover .imgComer{
   transition: transform .2s;
