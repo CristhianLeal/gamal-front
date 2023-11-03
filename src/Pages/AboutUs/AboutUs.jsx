@@ -107,11 +107,11 @@ const AboutUs = () => {
   return (
     <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
-        <h2 className='text-white text-center TitleH2'>QUE HACEMOS?</h2>
+        <h2 className='text-white text-center TitleH2'>QUE?</h2>
         <p className='text-white text-center metricStyle px-5 fs-4'>{metrics.description}</p>
       </div>
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
-        <h2 className='text-white text-center TitleH2'>QUIENES SOMOS?</h2>
+        <h2 className='text-white text-center TitleH2'>QUIENES?</h2>
         <div className='d-flex flex-wrap align-items-center justify-content-center gap-5'>
           {personsData?.map((person) => (
             <CardPresentation key={person._id} person={person} />
@@ -135,20 +135,20 @@ const AboutUs = () => {
         </div>
       </div>
       <div ref={ElementRef4} className={`mt-5 llego2 ${cardVisibilities[4] ? 'visible2' : ''}`}>
-        <h2 className='text-white text-center TitleH2'>METRICAS</h2>
+        <h2 className='text-white text-center TitleH2'>MÉTRICAS</h2>
         <div className='d-flex flex-column'>
           <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center'>
             {metrics.people && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center tam'>
               <i className="bi bi-people-fill IconMetric px-2"></i>
               <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.people}</p>
             </div>}
-            {metrics.man && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
-              <i className="bi bi-gender-male IconMetric px-2"></i>
-              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.man}% Hombres</p>
-            </div>}
             {metrics.woman && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
               <i className="bi bi-gender-female IconMetric px-2"></i>
               <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.woman}% Mujeres</p>
+            </div>}
+            {metrics.man && <div className='d-flex flex-row flex-md-column justify-content-center align-items-center'>
+              <i className="bi bi-gender-male IconMetric px-2"></i>
+              <p className='text-white text-center m-0 px-3 py-2 fs-4'>{metrics.man}% Hombres</p>
             </div>}
           </div>
           <div className='d-flex flex-column flex-md-row gap-md-5 justify-content-center align-items-center mt-md-5 mt-3'>
