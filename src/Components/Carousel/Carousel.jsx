@@ -26,16 +26,16 @@ const Carousel = () => {
   const settings = {
     dots: false,
     infinite: true,
-    speed: 500,
-    slidesToShow: data.fotos ? Math.min(data.fotos.length - 1, 5) : 6,
-    rows: 1,
-    swipeToSlide: true,
-    slidesToScroll: 1,
+    arrows: false,
     autoplay: true,
-    autoplaySpeed: 1000,
+    speed: 3500,
+    rows: 1,
+    autoplaySpeed: 1,
+    swipeToSlide: true,
+    slidesToScroll: 3,
     cssEase: 'linear',
     centerMode: true,
-    arrows: false
+    variableWidth: true
   }
 
   return (
