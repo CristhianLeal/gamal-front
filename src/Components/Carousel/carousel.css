@@ -2,14 +2,15 @@
   width: auto;
   height: 30px;
 }
-.carousel-image:last-child {
-  margin-right: 0 !important;
-}
 
 .carousel-container {
   width: 80% !important;
   height: auto !important;
   overflow: hidden;
+}
+
+.carousel-slide{
+  padding: 20px;
 }
 
 @media (min-width: 768px) {
