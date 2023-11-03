@@ -13,10 +13,8 @@
   z-index: 1;
 }
 .imgComer{
-  width: 50%;
+  width: 70%;
   border-radius: 20px;
-  min-height: 200px;
-  max-height: 200px;
 }
 .cardComer:hover .imgComer{
   transition: transform .2s;
