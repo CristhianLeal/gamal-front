@@ -73,7 +73,7 @@ const Admin = () => {
           </thead>
           <tbody>
             <tr>
-              <th>Video</th>
+              <th>IMAGEN PORTADA</th>
             </tr>
               <tr>
                 <td>
@@ -88,7 +88,7 @@ const Admin = () => {
                 </td>
               </tr>
             <tr>
-              <th>Imagenes</th>
+              <th>IMAGENES CARROUSEL</th>
             </tr>
             {data.fotos?.map((item) => (
               <tr key={item}>
