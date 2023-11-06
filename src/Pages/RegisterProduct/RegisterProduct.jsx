@@ -4,9 +4,11 @@ import axios from 'axios'
 import './registerProduct.css'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const RegisterProduct = () => {
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm()
   const onSubmit = async (data) => {
     if (name === null) {
       try {
@@ -84,16 +86,10 @@ const RegisterProduct = () => {
           </div>
           <div className="mb-3">
             <label className="form-label">Descripción</label>
-            <textarea
-              className={`form-control ${errors.description ? 'is-invalid' : ''}`}
-              placeholder="Esta es mi descripción"
-              {...register('description', {
-                required: 'description is required',
-                minLength: {
-                  value: 10,
-                  message: 'description must be at least 10 characters long'
-                }
-              })}
+            <ReactQuill
+              id="description"
+              value={watch('description')}
+              onChange={(value) => setValue('description', value)}
             />
             {errors.description && <div className="invalid-feedback">{errors.description.message}</div>}
           </div>
@@ -114,17 +110,11 @@ const RegisterProduct = () => {
           </div>
           <div className="mb-3">
             <label className="form-label">Formato</label>
-            <input
-            type="text"
-            className={`form-control ${errors.format ? 'is-invalid' : ''}`}
-            placeholder="ejemplo formato"
-            {...register('format', {
-              required: 'format is required',
-              minLength: {
-                value: 10,
-                message: 'format must be at least 10 characters long'
-              }
-            })} />
+            <ReactQuill
+              id="format"
+              value={watch('format')}
+              onChange={(value) => setValue('format', value)}
+            />
             {errors.format && <div className="invalid-feedback">{errors.format.message}</div>}
           </div>
           <button type="submit" className="btn btn-primary">{name === null ? 'CREAR PRODUCTO' : 'EDITAR PRODUCTO'}</button>

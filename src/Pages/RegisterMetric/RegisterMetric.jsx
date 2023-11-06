@@ -4,9 +4,11 @@ import axios from 'axios'
 import './registerMetric.css'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css'
 
 const RegisterMetric = () => {
-  const { register, handleSubmit, formState: { errors }, reset, setValue } = useForm()
+  const { register, handleSubmit, formState: { errors }, reset, setValue, watch } = useForm()
   const onSubmit = async (data) => {
     if (description === null) {
       try {
@@ -80,17 +82,10 @@ const RegisterMetric = () => {
         <form className='text-center' onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label className="form-label">Description</label>
-            <input
-              type="text"
-              className={`form-control ${errors.description ? 'is-invalid' : ''}`}
-              placeholder="Esta es una descripción de lo que realizamos"
-              {...register('description', {
-                required: 'description is required',
-                minLength: {
-                  value: 3,
-                  message: 'description must be at least 3 characters long'
-                }
-              })}
+            <ReactQuill
+              id="description"
+              value={watch('description')}
+              onChange={(value) => setValue('description', value)}
             />
             {errors.description && <div className="invalid-feedback">{errors.description.message}</div>}
           </div>
