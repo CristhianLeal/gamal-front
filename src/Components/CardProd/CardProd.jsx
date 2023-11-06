@@ -8,7 +8,7 @@ const CardProd = ({ product }) => {
       </div>
       <div className='contText'>
         <h3 className='CardProdTitle'>{product.productName}</h3>
-        <p className='CardProdDesc px-2 pt-2'>{product.description}</p>
+        <div className='CardProdDesc px-2 pt-2' dangerouslySetInnerHTML={{ __html: product.description }}></div>
       </div>
     </div>
   )
