@@ -107,12 +107,12 @@ const AboutUs = () => {
   return (
     <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
-        <h2 className='text-white text-center TitleH2'>QUE?</h2>
+        <h2 className='text-white text-center TitleH2'>QUÉ HACEMOS?</h2>
         <p className='text-white text-center metricStyle px-5 fs-4'>{metrics.description}</p>
       </div>
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
-        <h2 className='text-white text-center TitleH2'>QUIENES?</h2>
-        <div className='d-flex flex-wrap align-items-center justify-content-center gap-5'>
+        <h2 className='text-white text-center TitleH2'>QUIÉNES SOMOS?</h2>
+        <div className='d-flex flex-wrap align-items-center justify-content-center gap-5 align-items-stretch'>
           {personsData?.map((person) => (
             <CardPresentation key={person._id} person={person} />
           ))}
@@ -120,7 +120,7 @@ const AboutUs = () => {
       </div>
       <div ref={ElementRef2} className={`mt-5 llego2 ${cardVisibilities[2] ? 'visible2' : ''}`}>
         <h2 className='text-white text-center TitleH2'>NUESTROS PRODUCTOS</h2>
-        <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
+        <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center align-items-stretch'>
           {productsData?.map((product) => (
             <CardProd key={product._id} product={product} />
           ))}
@@ -128,7 +128,7 @@ const AboutUs = () => {
       </div>
       <div ref={ElementRef3} className={`mt-5 llego3 ${cardVisibilities[3] ? 'visible3' : ''}`}>
         <h2 className='text-white text-center TitleH2'>FORMATOS COMERCIALES</h2>
-        <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center'>
+        <div className='d-flex flex-wrap gap-2 justify-content-center align-items-center align-items-stretch'>
           {productsData?.map((product) => (
             <CardComer key={product._id} product={product} />
           ))}
