@@ -2,7 +2,7 @@ import './cardPresentation.css'
 
 const CardPresentation = ({ person }) => {
   return (
-    <div className="cardPresentation d-flex flex-row col-11 col-sm-5 col-lg-3">
+    <div className="cardPresentation d-flex flex-wrap col-11 col-sm-5 col-lg-3">
       <div className='d-flex flex-column col-6 align-items-center justify-content-center' >
         <img src={person.picture} className="cardPresentation-image " alt="avatar"></img>
       </div>
@@ -29,7 +29,7 @@ const CardPresentation = ({ person }) => {
               </a>
             </li>}
             {person.gmail && <li>
-              <a href={ person.gmail } target="_blank" rel="noreferrer">
+              <a href={ `mailto:${person.gmail}` } target="_blank" rel="noreferrer">
                 <i className="bi bi-envelope-at colorIco circle-iconp"></i>
               </a>
             </li>}
