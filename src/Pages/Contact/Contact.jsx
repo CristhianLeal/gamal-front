@@ -39,7 +39,7 @@ const Contact = () => {
       </div>
 
       <div ref={ERef1} className={`d-flex justify-content-center align-items-center Efect2 ${contVisible[1] ? 'EfectVisible2' : ''}`}>
-        <form action="https://formsubmit.co/cristhianaugustoleal@gmail.com" method="POST" className='d-flex flex-column align-items-center justify-content-center col-sm-6 col-10' >
+        <form action="https://formsubmit.co/gamaldigital@gmail.com" method="POST" className='d-flex flex-column align-items-center justify-content-center col-sm-6 col-10' >
             <div className='d-flex flex-row align-items-center justify-content-center col-12 py-2'>
               <label className='text-white typeForm col-md-2 col-3' htmlFor='name'>Nombre:</label>
               <input
