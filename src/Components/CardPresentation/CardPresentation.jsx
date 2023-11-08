@@ -9,7 +9,7 @@ const CardPresentation = ({ person }) => {
       <div className="card-body d-flex flex-column justify-content-center align-items-center col-6">
         <div className='contText'>
           <h2 className="cardPresentation-title text-center mt-2">{ person.name } </h2>
-          <p className="card-text cardPresentation-description px-2">{person.description} </p>
+          <div className='CardComerDesc px-3 pt-2' dangerouslySetInnerHTML={{ __html: person.description }}></div>
         </div>
         <div className="cardPresentation-icons">
           <ul className='list-unstyled m-0 d-flex flex-row align-items-center justify-content-center px-0'>
