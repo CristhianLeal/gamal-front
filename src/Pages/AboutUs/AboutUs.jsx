@@ -121,7 +121,7 @@ const AboutUs = () => {
     <div className='conten'>
       <div ref={ElementRef0} className={`mt-5 llego0 ${cardVisibilities[0] ? 'visible0' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUÉ HACEMOS?</h2>
-        <div className='text-white text-center metricStyle px-5 fs-4' dangerouslySetInnerHTML={{ __html: metrics.description }}></div>
+        <div className='text-white text-center px-3 px-md-4 fs-4' dangerouslySetInnerHTML={{ __html: metrics.description }}></div>
       </div>
       <div ref={ElementRef1} className={`mt-5 llego ${cardVisibilities[1] ? 'visible' : ''}`}>
         <h2 className='text-white text-center TitleH2'>QUIÉNES SOMOS?</h2>
