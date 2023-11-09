@@ -32,7 +32,7 @@ const Carousel = () => {
     rows: 1,
     autoplaySpeed: 1,
     swipeToSlide: true,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     cssEase: 'linear',
     centerMode: true,
     variableWidth: true
