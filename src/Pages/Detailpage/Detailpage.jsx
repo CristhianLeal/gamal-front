@@ -71,11 +71,20 @@ const DetailPage = () => {
     handleScroll()
     window.scrollTo(0, 0)
     window.addEventListener('scroll', handleScroll)
+    let count = 0
+    const intervalId = setInterval(() => {
+      handleScroll()
+      count++
+      if (count >= 4) {
+        clearInterval(intervalId)
+      }
+    }, 500)
     const fetchPost = async () => {
       try {
         const response = await axios.get(`https://gamaldigital.com:8080/posts/${postId}`)
         setPost(response.data.post)
         handleScroll()
+        intervalId()
       } catch (error) {
         console.error('Error al obtener los posts:', error)
       }
