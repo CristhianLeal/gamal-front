@@ -45,7 +45,6 @@ const Mainpage = () => {
     <div className='mainPage conten'>
       <div className='portada d-flex justify-content-center flex-column'>
         <h1 ref={TitleRef1} className={`h1Portada text-center llegot ${TitleVisibilities[0] ? 'visiblet' : ''}`}>SOMOS GAMAL DIGITAL</h1>
-
         <h2 ref={TitleRef2} className={`h2Portada text-center llegot2 ${TitleVisibilities[1] ? 'visiblet2' : ''}`}>CREAMOS CONTENIDO AUDIOVISUAL DE CALIDAD</h2>
       </div>
       <div>
